@@ -13,6 +13,7 @@ export default {
     },
     colors: {
       'light-blue': '#063c6a',
+      'sky-blue': '#07b6d5',
       'dark-blue': '#022859',
       'lighter-blue': '#1a7dd8',
       'lemon': '#ffc208',

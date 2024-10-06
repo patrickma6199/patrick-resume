@@ -27,7 +27,11 @@ const NavMenu: React.FC = () => {
 
     return (
         <>
-            <Button onClick={() => setOpen(true)}><MenuIcon /></Button>
+            <Button onClick={() => setOpen(true)}>
+                <MenuIcon
+                    className="text-white"
+                />
+            </Button>
             <Drawer open={open} anchor={"right"}
                 onClose={() => setOpen(false)}
                 classes={{ paper: 'bg-dark-blue' }}
