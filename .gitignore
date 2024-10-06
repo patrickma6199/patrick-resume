@@ -3,6 +3,9 @@
 **/dist
 **/dist-ssr
 *.local
+*.crt
+*.key
+*.pem
 
 # Editor directories and files
 */.vscode
