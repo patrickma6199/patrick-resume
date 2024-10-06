@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavMenu from './components/NavMenu';
 import CodeIcon from '@mui/icons-material/Code';
 import MainContent from './components/MainContent';

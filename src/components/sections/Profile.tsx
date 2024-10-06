@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import React, { MutableRefObject, RefObject, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 
 const Profile: React.FC = () => {

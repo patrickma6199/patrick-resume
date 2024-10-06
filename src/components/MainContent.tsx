@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Profile from './sections/Profile';
 import Work from './sections/Work';
 import Projects from './sections/Projects';
