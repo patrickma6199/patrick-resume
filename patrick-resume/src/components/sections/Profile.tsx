@@ -75,6 +75,8 @@ const Profile: React.FC = () => {
                     transition={{ duration: 1, ease: 'easeOut', delay: 1 }}
                 >   
                     <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         variants={{
                             hidden: { opacity: 0, y: -25 },
                             visible: { opacity: 1, y: 0 }
@@ -93,6 +95,8 @@ const Profile: React.FC = () => {
                         </ContactIcon>
                     </motion.div>
                     <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         variants={{
                             hidden: { opacity: 0, y: -25 },
                             visible: { opacity: 1, y: 0 }
@@ -111,6 +115,8 @@ const Profile: React.FC = () => {
                         </ContactIcon>
                     </motion.div>
                     <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         variants={{
                             hidden: { opacity: 0, y: -25 },
                             visible: { opacity: 1, y: 0 }
