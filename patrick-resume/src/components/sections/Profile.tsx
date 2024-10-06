@@ -105,7 +105,7 @@ const Profile: React.FC = () => {
                         <ContactIcon
                             rounded={true}
                             bgColor="bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
-                            onClick={() => window.open("https://github.com/patrickma6199")}
+                            onClick={() => window.open("https://www.linkedin.com/in/tszhoma")}
                         >
                             <LinkedInIcon
                                 sx={{
@@ -125,7 +125,7 @@ const Profile: React.FC = () => {
                         <ContactIcon
                             rounded={true}
                             bgColor="bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
-                            onClick={() => window.open("https://github.com/patrickma6199")}
+                            onClick={() => window.open("mailto:patrickma6199@gmail.com")}
                         >
                             <EmailIcon
                                 sx={{

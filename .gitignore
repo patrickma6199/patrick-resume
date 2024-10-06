@@ -8,10 +8,10 @@
 *.pem
 
 # Editor directories and files
-*/.vscode
+**/.vscode
 !.vscode/extensions.json
-*/.idea
-*/.DS_Store
+**/.idea
+**/.DS_Store
 *.suo
 *.ntvs*
 *.njsproj

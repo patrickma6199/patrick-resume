@@ -50,26 +50,25 @@ const NavMenu: React.FC = () => {
                     },
                 }}
             >
-                    {
-                        menuItems.map((name, index) => (
-                            <Button key={index}
-                                sx={{
-                                    color: 'white',
-                                    fontSize: '1rem',
-                                    fontWeight: 'bold',
-                                    minWidth: '100%',
-                                    display: 'block',
-                                    padding: '1rem',
-                                }}
-                                onClick={() => {
-                                window.location.hash = name.toLowerCase();
-                                setOpen(false);
-                            }}>
-                                {name}
-                            </Button>
-
-                        ))
-                    }
+                {
+                    menuItems.map((name, index) => (
+                        <Button key={index}
+                            sx={{
+                                color: 'white',
+                                fontSize: '1rem',
+                                fontWeight: 'bold',
+                                minWidth: '100%',
+                                display: 'block',
+                                padding: '1rem',
+                            }}
+                            onClick={() => {
+                            window.location.hash = name.toLowerCase();
+                            setOpen(false);
+                        }}>
+                            {name}
+                        </Button>
+                    ))
+                }
             </Drawer>
         </>
     );

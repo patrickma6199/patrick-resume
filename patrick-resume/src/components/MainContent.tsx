@@ -13,7 +13,7 @@ const MainContent: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex flex-col w-full mt-4 items-center overflow-y-auto overflow-x-hidden px-40 gap-8 box-border">
+        <div className="flex flex-col w-full mt-4 items-center overflow-y-auto overflow-x-hidden px-0 gap-8 box-border lg:px-40">
             <div id="landing" className="w-full min-h-[100vh] flex justify-center items-center box-border">
                 <HomeLogo />
             </div>
