@@ -12,8 +12,9 @@ export default {
       xl: '1440px',
     },
     colors: {
+      'light-blue': '#063c6a',
       'dark-blue': '#022859',
-      'light-blue': '#1a7dd8',
+      'lighter-blue': '#1a7dd8',
       'lemon': '#ffc208',
       'orange': '#f37600',
       'dark-orange': '#f34604',

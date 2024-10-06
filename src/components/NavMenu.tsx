@@ -30,6 +30,7 @@ const NavMenu: React.FC = () => {
             <Button onClick={() => setOpen(true)}><MenuIcon /></Button>
             <Drawer open={open} anchor={"right"}
                 onClose={() => setOpen(false)}
+                classes={{ paper: 'bg-dark-blue' }}
                 sx={{
                     width: '10rem',
                     '& .MuiDrawer-paper': {
@@ -40,24 +41,28 @@ const NavMenu: React.FC = () => {
                         flexDirection: 'column',
                         justifyContent: 'flex-start',
                         alignItems: 'center',
-                        gap: '1rem',
                         paddingTop: '4vh',
+                        color: 'white',
                     },
                 }}
             >
                     {
                         menuItems.map((name, index) => (
-                            <div id={name.toLowerCase()}>
-                                <Button key={index}
-                                    fullWidth={true}
-                                    className="p-[100%] text-white hover:bg-light-blue hover:text-black"
-                                    onClick={() => {
-                                    window.location.hash = name.toLowerCase();
-                                    setOpen(false);
-                                }}>
-                                    {name}
-                                </Button>
-                            </div>
+                            <Button key={index}
+                                sx={{
+                                    color: 'white',
+                                    fontSize: '1rem',
+                                    fontWeight: 'bold',
+                                    minWidth: '100%',
+                                    display: 'block',
+                                    padding: '1rem',
+                                }}
+                                onClick={() => {
+                                window.location.hash = name.toLowerCase();
+                                setOpen(false);
+                            }}>
+                                {name}
+                            </Button>
 
                         ))
                     }
