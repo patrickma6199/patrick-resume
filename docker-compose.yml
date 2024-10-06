@@ -1,0 +1,16 @@
+services:
+    portfolio-frontend:
+      container_name: portfolie-frontend
+      restart: unless-stopped
+      volumes:
+        - ./deploy/frontend.conf:/etc/nginx/templates/nginx.conf.template
+        - $SSL_DIR$CERT:$PROXY_SSL_DIR$CERT
+        - $SSL_DIR$KEY:$PROXY_SSL_DIR$KEY
+      environment:
+        NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
+        CRT_LOCATION: $PROXY_SSL_DIR$LOCAL.crt
+        KEY_LOCATION: $PROXY_SSL_DIR$LOCAL.key
+        LOCAL: ${LOCAL}
+      build:
+        context: ./patrick-resume
+        dockerfile: ../Dockerfile
