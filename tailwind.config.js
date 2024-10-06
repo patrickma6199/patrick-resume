@@ -17,6 +17,7 @@ export default {
       'lemon': '#ffc208',
       'orange': '#f37600',
       'dark-orange': '#f34604',
+      'white': '#ffffff',
     },
     fontFamily: {
       mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
