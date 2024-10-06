@@ -3,6 +3,7 @@ import Profile from './sections/Profile';
 import Work from './sections/Work';
 import Projects from './sections/Projects';
 import Awards from './sections/Awards';
+import HomeLogo from './HomeLogo';
 
 
 const MainContent: React.FC = () => {
@@ -12,17 +13,20 @@ const MainContent: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex flex-col min-w-[100vw] mt-4 items-center overflow-auto px-40 gap-8">
-            <div id="profile" className="min-w-[100%] min-h-[100%]">
+        <div className="flex flex-col w-full mt-4 items-center overflow-y-auto overflow-x-hidden px-40 gap-8 box-border">
+            <div id="landing" className="w-full min-h-[100vh] flex justify-center items-center box-border">
+                <HomeLogo />
+            </div>
+            <div id="profile" className="w-full min-h-[100vh]">
                 <Profile />
             </div>
-            <div id="projects" className="min-w-[100%]">
+            <div id="projects" className="w-full min-h-[100vh]">
                 <Projects />
             </div>
-            <div id="awards" className="min-w-[100%]">
+            <div id="awards" className="w-full min-h-[100vh]">
                 <Awards />
             </div>
-            <div id="work" className="min-w-[100%]">
+            <div id="work" className="w-full min-h-[100vh]">
                 <Work />
             </div>
         </div>
