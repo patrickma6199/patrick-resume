@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import ContactIcon from '../ContactIcon';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -10,8 +10,7 @@ const Profile: React.FC = () => {
 
     const containerRef = React.useRef<HTMLDivElement | null>(null);
     const isInView = useInView(containerRef, {
-        once: true,
-        margin: '-10% 0px 0px 0px', //TODO: Fix to be true only when 10% of the element is in view
+        margin: '90% 0px 0px 0px', //TODO: Fix to be true only when 90% of the element is in view
     });
     const mainControlsIcons = useAnimation();
     const { scrollYProgress } = useScroll({ //TODO: make this work for the image and maybe icons too
@@ -52,7 +51,7 @@ const Profile: React.FC = () => {
                         1500,
                         "Full-Stack Experienced",
                         1500,
-                        "Data Analyst",
+                        "Aspiring Data Analyst",
                         1500,
                     ]}
                     wrapper="div"

@@ -12,7 +12,7 @@ services:
         KEY_LOCATION: ${NGINX_SSL_DIR}${KEY}
       build:
         context: ./patrick-resume
-        dockerfile: ../Dockerfile
+        dockerfile: ./Deploy.dockerfile
       ports:
       - ${HTTP_PROXY_PORT}:${HTTP_PROXY_PORT}
       - ${HTTPS_PROXY_PORT}:${HTTPS_PROXY_PORT}
