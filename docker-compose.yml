@@ -10,8 +10,9 @@ services:
         NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
         CRT_LOCATION: ${NGINX_SSL_DIR}${CERT}.crt
         KEY_LOCATION: ${NGINX_SSL_DIR}${KEY}.key
+        HOST_NAME: ${HOST_NAME}
       build:
-        context: ./patrick-resume
+        context: ./resume-frontend
         dockerfile: ./Deploy.dockerfile
       ports:
       - ${HTTP_PROXY_PORT}:${HTTP_PROXY_PORT}
