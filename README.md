@@ -1,6 +1,6 @@
 # Patrick's Static Portfolio React App
 
-## Commands
+## 1. Commands
 
 ```bash
 yarn            # Equivalent to 'yarn i' or 'yarn install'
@@ -9,9 +9,7 @@ yarn dev        # For hot-reloading development session
 yarn format     # For Prettier formatting
 ```
 
-# Patrick's Static Portfolio
-
-## 1. Certificate Set-up
+## 2. Certificate Set-up
 
 ### a. Generating Unsigned Certificates
 
@@ -44,12 +42,12 @@ certonly - This option tells certbot to obtain a certificate but not to install 
 sudo certbot certonly --manual --preferred-challenges=dns --email <Your Email> --server <https://acme-v02.api.letsencrypt.org/directory> -d <The Deployed Domain/Subdomain> -d '*.<The Deployed Domain/Subdomain>'
 ```
 
-## 2. Project Build Step
+## 3. Project Build Step
 
 ```bash
 (sudo) docker-compose up -d --build
 ```
 
-## 3. View Page
+## 4. View Page
 
 Head to ```localhost``` or ```<finalized domain>``` and check out the deployed version of the site!
