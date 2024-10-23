@@ -7,6 +7,8 @@ import HomeLogo from './HomeLogo';
 
 
 const MainContent: React.FC = () => {
+    //TODO: remove
+    //const mainContentRef = React.useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         scroll();
@@ -17,16 +19,16 @@ const MainContent: React.FC = () => {
             <div id="landing" className="w-full min-h-[100vh] flex justify-center items-center box-border">
                 <HomeLogo />
             </div>
-            <div id="profile" className="w-full min-h-[100vh]">
+            <div id="profile" className="w-full min-h-[100vh] flex justify-center items-center box-border">
                 <Profile />
             </div>
-            <div id="projects" className="w-full min-h-[100vh]">
+            <div id="projects" className="w-full min-h-[100vh] flex justify-center items-center box-border">
                 <Projects />
             </div>
-            <div id="awards" className="w-full min-h-[100vh]">
+            <div id="awards" className="w-full min-h-[100vh] flex justify-center items-center box-border">
                 <Awards />
             </div>
-            <div id="work" className="w-full min-h-[100vh]">
+            <div id="work" className="w-full min-h-[100vh] flex justify-center items-center box-border">
                 <Work />
             </div>
         </div>

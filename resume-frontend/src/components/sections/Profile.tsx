@@ -4,43 +4,15 @@ import ContactIcon from '../ContactIcon';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { motion, useAnimation, useInView, useScroll, useMotionValueEvent } from "framer-motion"
+import { motion, useAnimation, useInView, useScroll } from "framer-motion"
 
-const Profile: React.FC = () => {
+type ProfileProps = {
+}
 
-    const containerRef = React.useRef<HTMLDivElement | null>(null);
-    const isInView = useInView(containerRef, {
-        margin: '90% 0px 0px 0px', //TODO: Fix to be true only when 90% of the element is in view
-    });
-    const mainControlsIcons = useAnimation();
-    const { scrollYProgress } = useScroll({ //TODO: make this work for the image and maybe icons too
-        target: containerRef,
-        offset: ["start end", "end end"],
-    });
-
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        console.log('Value:', latest);
-    })
-
-    // const profileImageXValue = useTransform(scrollYProgress, [0, 1], ["10rem", "0rem"]);
-    // const profileImageOpacityValue = useTransform(scrollYProgress, [0, 1], ["0", "1"]);
-
-    useEffect(() => {
-        if (isInView) {
-            mainControlsIcons.start('visible');
-        }
-    }, [isInView]);
-
-    //TODO: REMOVE
-    useEffect(() => {
-        const unsubscribe = scrollYProgress.on('change', (value) => {
-            console.log('Value:', value);
-        });
-        return () => unsubscribe();
-    }, [scrollYProgress]);
+const Profile: React.FC<ProfileProps> = () => {
 
     return (
-        <div className="min-w-[100%] flex flex-row justify-between items-center p-4 relative" ref={containerRef}>
+        <div className="min-w-[100%] flex flex-row justify-between items-center p-4 relative">
             <div className="flex flex-col gap-4">
                 <TypeAnimation
                     cursor={true}
@@ -59,10 +31,8 @@ const Profile: React.FC = () => {
                     className="text-2xl font-bold py-2 px-4 my-8 rounded-lg"
                     speed={30}
                 />
-                <p className="text-lg p-4 max-w-[40vw]">A passionate and knowledge-driven fourth-year Computer Science
-                    student at the University of British Columbia Campus with experience in Object Oriented Programming,
-                    Relational Databases, Web Development, Machine Learning, Data Structures, Data Analysis
-                    and Visualization with Python, R and Tableau, University Teaching and in-person Customer Service.</p>
+                <p className="text-lg p-4 max-w-[40vw]">On the search for Internship and Junior Roles in Full-Stack/Backend Web Development, Machine Learning and Database Management. Open to any technical opportunities with a love of learning how systems operate!</p>
+                <p className="text-sm p-4 max-w-[40vw]">4rd Year Undergraduate Student and Teaching Assistant at The University of British Columbia </p>
                 <motion.div
                     className="flex flex-row justify-start gap-4 items-center"
                     variants={{
@@ -70,7 +40,8 @@ const Profile: React.FC = () => {
                         visible: { opacity: 1, transition: { staggerChildren: 0.5 } }
                     }}
                     initial='hidden'
-                    animate={mainControlsIcons}
+                    viewport={{amount: 0.8}}
+                    whileInView="visible"
                     transition={{ duration: 1, ease: 'easeOut', delay: 1 }}
                 >   
                     <motion.div
@@ -114,7 +85,7 @@ const Profile: React.FC = () => {
                         </ContactIcon>
                     </motion.div>
                     <motion.div
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.1, rotateY: 10 }}
                         whileTap={{ scale: 0.9 }}
                         variants={{
                             hidden: { opacity: 0, y: -25 },
@@ -139,12 +110,13 @@ const Profile: React.FC = () => {
                 src="https://avatars.githubusercontent.com/u/77289918?s=820&v=4"
                 alt="Patrick Ma"
                 className="rounded-full h-150 w-150 m-4 shadow-lg p-2 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
+                viewport={{ amount: 0.8 }}
+                whileInView="visible"
                 variants={{
                     hidden: { opacity: 0, x: 100 },
                     visible: { opacity: 1, x: 0 }
                 }}
                 initial='hidden'
-                animate={mainControlsIcons}
             />
         </div>
     );

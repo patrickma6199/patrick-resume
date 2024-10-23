@@ -1,0 +1,3 @@
+cd resume-frontend
+
+yarn lint-staged
