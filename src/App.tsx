@@ -2,7 +2,6 @@ import React from 'react';
 import NavMenu from './components/NavMenu';
 import CodeIcon from '@mui/icons-material/Code';
 import MainContent from './components/MainContent';
-import {Parallax} from 'react-scroll-parallax';
 
 const App: React.FC = () => {
     return (

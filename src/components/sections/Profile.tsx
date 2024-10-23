@@ -26,18 +26,22 @@ const Profile: React.FC<ProfileProps> = () => {
                     ]}
                     wrapper="div"
                     repeat={Infinity}
-                    className="text-2xl font-bold py-2 px-4 my-8 rounded-lg"
+                    className="text-2xl font-bold py-2 px-4 my-8"
                     speed={30}
                 />
-                <p className="text-lg p-4 max-w-[40vw]">
+                <p className="text-lg px-4 py-2 max-w-[40vw]">
                     On the search for Internship and Junior Roles in
                     Full-Stack/Backend Web Development, Machine Learning and
                     Database Management. Open to any technical opportunities
                     with a love of learning how systems operate!
                 </p>
-                <p className="text-sm p-4 max-w-[40vw]">
-                    4rd Year Undergraduate Student and Teaching Assistant at The
-                    University of British Columbia{' '}
+                <p className="text-sm px-4 py-2 max-w-[40vw]">
+                    4rd Year Undergraduate Student (BSc.) and Teaching Assistant{' '}
+                    <br /> Majoring in Computer Science and Minoring in Data
+                    Science at <br />{' '}
+                    <b className="text-md">
+                        THE UNIVERSITY OF BRITISH COLUMBIA - 4.33/4.33 GPA
+                    </b>
                 </p>
                 <motion.div
                     className="flex flex-row justify-start gap-4 items-center"
