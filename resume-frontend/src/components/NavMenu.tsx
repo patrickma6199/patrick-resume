@@ -1,20 +1,15 @@
-import { Button, Drawer } from '@mui/material';
+import {Button, Drawer} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-const menuItems = [
-    'Profile',
-    'Projects',
-    'Awards',
-    'Work'
-];    
+const menuItems = ['Profile', 'Projects', 'Awards', 'Work'];
 
 // For URI fragment based page navigation
 const scroll = () => {
-    const { hash } = window.location;
+    const {hash} = window.location;
     const element = document.getElementById(hash?.replace('#', ''));
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({behavior: 'smooth'});
     }
 };
 
@@ -28,13 +23,13 @@ const NavMenu: React.FC = () => {
     return (
         <>
             <Button onClick={() => setOpen(true)}>
-                <MenuIcon
-                    className="text-white"
-                />
+                <MenuIcon className="text-white" />
             </Button>
-            <Drawer open={open} anchor={"right"}
+            <Drawer
+                open={open}
+                anchor={'right'}
                 onClose={() => setOpen(false)}
-                classes={{ paper: 'bg-dark-blue' }}
+                classes={{paper: 'bg-dark-blue'}}
                 sx={{
                     width: '10rem',
                     '& .MuiDrawer-paper': {
@@ -50,28 +45,28 @@ const NavMenu: React.FC = () => {
                     },
                 }}
             >
-                {
-                    menuItems.map((name, index) => (
-                        <Button key={index}
-                            sx={{
-                                color: 'white',
-                                fontSize: '1rem',
-                                fontWeight: 'bold',
-                                minWidth: '100%',
-                                display: 'block',
-                                padding: '1rem',
-                            }}
-                            onClick={() => {
+                {menuItems.map((name, index) => (
+                    <Button
+                        key={index}
+                        sx={{
+                            color: 'white',
+                            fontSize: '1rem',
+                            fontWeight: 'bold',
+                            minWidth: '100%',
+                            display: 'block',
+                            padding: '1rem',
+                        }}
+                        onClick={() => {
                             window.location.hash = name.toLowerCase();
                             setOpen(false);
-                        }}>
-                            {name}
-                        </Button>
-                    ))
-                }
+                        }}
+                    >
+                        {name}
+                    </Button>
+                ))}
             </Drawer>
         </>
     );
-}
+};
 
 export default NavMenu;
