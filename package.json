@@ -10,7 +10,7 @@
     "tailwind": "postcss src/styles/tailwind.css -o src/styles/index.css",
     "preview": "vite preview",
     "format": "prettier --write ./src/**/*.{ts,tsx,css}",
-    "prepare": "husky ../.husky"
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",

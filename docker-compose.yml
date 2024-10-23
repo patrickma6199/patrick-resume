@@ -12,7 +12,7 @@ services:
         KEY_LOCATION: ${NGINX_SSL_DIR}${KEY}.key
         HOST_NAME: ${HOST_NAME}
       build:
-        context: ./resume-frontend
+        context: ./
         dockerfile: ./Deploy.dockerfile
       ports:
       - ${HTTP_PROXY_PORT}:${HTTP_PROXY_PORT}
