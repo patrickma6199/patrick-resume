@@ -2,23 +2,26 @@ import React from 'react';
 
 type ProjectCardProps = {
     title: string;
+    dates: string;
     description: string;
     technologies: string[];
-    github: string;
+    github?: string;
     link?: string;
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
     title,
+    dates,
     description,
     technologies,
     github,
     link,
 }) => {
     return (
-        <div className="min-w-[60%] box-border p-2 flex flex-row align-center items-center bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple rounded-lg shadow-md">
+        <div className="min-w-[60%] min-h-144 box-border p-5 justify-start flex flex-row items-start bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple rounded-4xl shadow-md">
             <div className="flex flex-col rounded-lg py-2 px-3 box-border w-full h-full gap-4">
                 <p className="text-2xl font-bold">{title}</p>
+                <p className="text-md">{dates}</p>
                 <p className="text-md">{description}</p>
                 <div>
                     {technologies.map((tech, index) => (
