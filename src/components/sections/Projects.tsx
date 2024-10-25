@@ -64,10 +64,11 @@ const Projects: React.FC = () => {
                             `Deployed using Apache and MySQL Docker Containers to attain hands-on experience withcontainerization`,
                         ]}
                         technologies={[
-                            <Icon src={AndroidStudioIcon} />,
-                            <Icon src={FirebaseIcon} />,
-                            <Icon src={JavaIcon} />,
-                            <Icon src={GradleIcon} />,
+                            <Icon src={CSSIcon} />,
+                            <Icon src={DockerIcon} />,
+                            <Icon src={PHPIcon} />,
+                            <Icon src={MySQLIcon} />,
+                            <Icon src={ApacheIcon} />,
                         ]}
                         github="https://github.com"
                         link="https://github.com"
