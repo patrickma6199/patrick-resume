@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectCard from '../ProjectCard';
+import ProjectCard from '../misc/ProjectCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../assets/css/Projects.css';
@@ -11,6 +11,7 @@ import DockerIcon from '../../assets/techStackLogos/docker.svg';
 import FirebaseIcon from '../../assets/techStackLogos/firebase.svg';
 import JavaIcon from '../../assets/techStackLogos/java.svg';
 import JavaScriptIcon from '../../assets/techStackLogos/js.svg';
+import JQueryIcon from '../../assets/techStackLogos/jquery.svg';
 import MySQLIcon from '../../assets/techStackLogos/mysql.svg';
 import PHPIcon from '../../assets/techStackLogos/php.svg';
 import ReactIcon from '../../assets/techStackLogos/react.svg';
@@ -18,6 +19,8 @@ import TailwindCSSIcon from '../../assets/techStackLogos/tailwindcss.svg';
 import TypeScriptIcon from '../../assets/techStackLogos/typescript.svg';
 import ApacheIcon from '../../assets/techStackLogos/apache.svg';
 import GradleIcon from '../../assets/techStackLogos/gradle.svg';
+import LinuxIcon from '../../assets/techStackLogos/linux.svg';
+import BootstrapIcon from '../../assets/techStackLogos/bootstrap.svg';
 import Icon from '../misc/iconWrapper';
 
 const Projects: React.FC = () => {
@@ -37,6 +40,31 @@ const Projects: React.FC = () => {
             <Slider {...projectCardSettings}>
                 <div className="min-w-min min-h-min">
                     <ProjectCard
+                        title="Pondr"
+                        dates="Jan 2024 - Apr 2024"
+                        description={[
+                            `Developed a discussion forum website with time tracking metrics to assess engagement and hot item tracking`,
+                            `Implemented confidential informating hashing with salts for account security and input sanitization toprevent SQL injection attacks`,
+                            `Used JQuery to handling asynchronous POST requests to RESTFUL APIs written with PHP`,
+                            `Deployed with PHP and MySQL on university owned Linux RedHat Server`,
+                            `Followed Agile Workflow principles such as Daily Standups, Scrum meetings, Sprints, and the use of a Kanban Board for coordination of project tasks`,
+                        ]}
+                        technologies={[
+                            <Icon src={PHPIcon} />,
+                            <Icon src={CSSIcon} />,
+                            <Icon src={MySQLIcon} />,
+                            <Icon src={JQueryIcon} />,
+                            <Icon src={MySQLIcon} />,
+                            <Icon src={LinuxIcon} />,
+                            <Icon src={ApacheIcon} />,
+                            <Icon src={BootstrapIcon} />,
+                        ]}
+                        github="https://github.com"
+                        link="https://github.com"
+                    />
+                </div>
+                <div className="min-w-min min-h-min">
+                    <ProjectCard
                         title="Food Ordering App Vertical Prototype"
                         dates="Sept 2023 - Dec 2023"
                         description={[
@@ -50,7 +78,7 @@ const Projects: React.FC = () => {
                             <Icon src={JavaIcon} />,
                             <Icon src={GradleIcon} />,
                         ]}
-                        github="https://github.com"
+                        github="https://github.com/patrickma6199/oh_nat_foods_order"
                     />
                 </div>
                 <div className="min-w-min min-h-min">
@@ -69,51 +97,6 @@ const Projects: React.FC = () => {
                             <Icon src={PHPIcon} />,
                             <Icon src={MySQLIcon} />,
                             <Icon src={ApacheIcon} />,
-                        ]}
-                        github="https://github.com"
-                        link="https://github.com"
-                    />
-                </div>
-                <div className="min-w-min min-h-min">
-                    <ProjectCard
-                        title="Project 3"
-                        dates="Jan 1970 - April 1970"
-                        description={['This is a project description']}
-                        technologies={[
-                            <Icon src={AndroidStudioIcon} />,
-                            <Icon src={FirebaseIcon} />,
-                            <Icon src={JavaIcon} />,
-                            <Icon src={GradleIcon} />,
-                        ]}
-                        github="https://github.com"
-                        link="https://github.com"
-                    />
-                </div>
-                <div className="min-w-min min-h-min">
-                    <ProjectCard
-                        title="Project 4"
-                        dates="Jan 1970 - April 1970"
-                        description={['This is a project description']}
-                        technologies={[
-                            <Icon src={AndroidStudioIcon} />,
-                            <Icon src={FirebaseIcon} />,
-                            <Icon src={JavaIcon} />,
-                            <Icon src={GradleIcon} />,
-                        ]}
-                        github="https://github.com"
-                        link="https://github.com"
-                    />
-                </div>
-                <div className="min-w-min min-h-min">
-                    <ProjectCard
-                        title="Project 5"
-                        dates="Jan 1970 - April 1970"
-                        description={['This is a project description']}
-                        technologies={[
-                            <Icon src={AndroidStudioIcon} />,
-                            <Icon src={FirebaseIcon} />,
-                            <Icon src={JavaIcon} />,
-                            <Icon src={GradleIcon} />,
                         ]}
                         github="https://github.com"
                         link="https://github.com"

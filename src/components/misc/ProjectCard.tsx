@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './misc/Button';
+import Button from './Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
 

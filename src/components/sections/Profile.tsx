@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {TypeAnimation} from 'react-type-animation';
-import ContactIcon from '../ContactIcon';
+import ContactIcon from '../misc/ContactIcon';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

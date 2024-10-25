@@ -57,8 +57,19 @@ const NavMenu: React.FC = () => {
                             padding: '1rem',
                         }}
                         onClick={() => {
-                            window.location.hash = name.toLowerCase();
+                            const element = document.getElementById(
+                                name.toLowerCase(),
+                            );
+                            if (element) {
+                                element.scrollIntoView({behavior: 'smooth'});
+                            }
                             setOpen(false);
+
+                            window.history.pushState(
+                                null,
+                                '',
+                                `#${name.toLowerCase()}`,
+                            );
                         }}
                     >
                         {name}
