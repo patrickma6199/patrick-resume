@@ -4,16 +4,17 @@ import {
     useMotionValueEvent,
     useTransform,
 } from 'framer-motion';
-import React from 'react';
-import {useScrollContext} from '../../contexts/scrollContext';
+import React, {useState} from 'react';
+import {useScrollContext} from '../../../contexts/ScrollContext';
 
 const CircuitAnimation: React.FC = () => {
     const {scrollYProgress} = useScrollContext();
+    const [isFixed, setIsFixed] = useState<boolean>(false);
 
-    const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+    const pathLength = useTransform(scrollYProgress, [0, 1], [0, 5]);
 
     useMotionValueEvent(pathLength, 'change', latest => {
-        console.log('pathLength is: ' + latest);
+        setIsFixed(latest > 1);
     });
 
     return (
@@ -21,7 +22,7 @@ const CircuitAnimation: React.FC = () => {
             width="100%"
             height="200vh"
             viewBox="0 0 1440 560"
-            className="absolute"
+            className="top-5 absolute z-1 pointer-events-none"
         >
             <g fill="none" transform="scale(1.2)">
                 <motion.path

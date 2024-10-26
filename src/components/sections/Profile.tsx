@@ -4,14 +4,20 @@ import ContactIcon from '../misc/ContactIcon';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import {motion, useAnimation, useInView, useScroll} from 'framer-motion';
+import {motion, useTransform} from 'framer-motion';
+import {useScrollContext} from '../../contexts/ScrollContext';
 
-type ProfileProps = {};
+const Profile: React.FC = () => {
+    const {scrollYProgress} = useScrollContext();
 
-const Profile: React.FC<ProfileProps> = () => {
+    const yTranslation = useTransform(scrollYProgress, [0, 0.4], [1000, 0]);
+
     return (
         <div className="min-w-[100%] flex flex-row justify-between items-center p-4 relative">
-            <div className="flex flex-col gap-4">
+            <motion.div
+                className="p-2 flex flex-col gap-4 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple rounded-3xl shadow-lg"
+                style={{y: yTranslation}}
+            >
                 <TypeAnimation
                     cursor={true}
                     sequence={[
@@ -129,7 +135,7 @@ const Profile: React.FC<ProfileProps> = () => {
                         </ContactIcon>
                     </motion.div>
                 </motion.div>
-            </div>
+            </motion.div>
             <motion.img
                 src="https://avatars.githubusercontent.com/u/77289918?s=820&v=4"
                 alt="Patrick Ma"

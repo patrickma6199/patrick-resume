@@ -9,10 +9,11 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
     /* Firefox */
+
+    scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar,
 html::-webkit-scrollbar {
     display: none;
 }
-

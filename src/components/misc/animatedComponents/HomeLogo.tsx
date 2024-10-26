@@ -1,6 +1,5 @@
 import React from 'react';
 import {motion} from 'framer-motion';
-import {Opacity} from '@mui/icons-material';
 
 const HomeLogo: React.FC = () => {
     const svgVariants = {
@@ -23,6 +22,7 @@ const HomeLogo: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="-126.22499999999997 -10 752.4499999999999 170"
             preserveAspectRatio="xMidYMid"
+            className="z-50 pointer-events-none"
         >
             <defs>
                 <linearGradient

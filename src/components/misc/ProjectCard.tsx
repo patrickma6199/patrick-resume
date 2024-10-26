@@ -48,7 +48,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 <p className="text-md">{dates}</p>
                 <ul className="text-md list-disc pl-5">
                     {description.map((desc, index) => (
-                        <li key={index}>{desc}</li>
+                        <li key={index} className="py-2">
+                            {desc}
+                        </li>
                     ))}
                 </ul>
                 <div className="flex flex-row gap-4 items-center absolute bottom-6 left-6">

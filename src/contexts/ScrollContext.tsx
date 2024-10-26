@@ -7,13 +7,13 @@ interface ScrollContextProps {
 
 const ScrollContext = createContext<ScrollContextProps | null>(null);
 
-export const ScrollProvider: React.FC<{children: React.ReactNode}> = ({
-    children,
-}) => {
-    const {scrollYProgress} = useScroll();
-
-    useMotionValueEvent(scrollYProgress, 'change', latest => {
-        console.log('scrollYProgress is: ' + latest);
+export const ScrollProvider: React.FC<{
+    parentRef: React.RefObject<HTMLDivElement>;
+    children: React.ReactNode;
+}> = ({parentRef, children}) => {
+    const {scrollYProgress} = useScroll({
+        target: parentRef,
+        offset: ['start start', 'end 100vh'],
     });
 
     return (
