@@ -44,9 +44,9 @@ const Projects: React.FC = () => {
                         dates="Jan 2024 - Apr 2024"
                         description={[
                             `Developed a discussion forum website with time tracking metrics to assess engagement and hot item tracking`,
-                            `Implemented confidential informating hashing with salts for account security and input sanitization toprevent SQL injection attacks`,
+                            `Implemented confidential information hashing with salts for account security and input sanitization to prevent SQL injection attacks`,
                             `Used JQuery to handling asynchronous POST requests to RESTFUL APIs written with PHP`,
-                            `Deployed with PHP and MySQL on university owned Linux RedHat Server`,
+                            `Deployed with PHP and MySQL on university-owned Linux RedHat Server`,
                             `Followed Agile Workflow principles such as Daily Standups, Scrum meetings, Sprints, and the use of a Kanban Board for coordination of project tasks`,
                         ]}
                         technologies={[
@@ -59,8 +59,7 @@ const Projects: React.FC = () => {
                             <Icon src={ApacheIcon} />,
                             <Icon src={BootstrapIcon} />,
                         ]}
-                        github="https://github.com"
-                        link="https://github.com"
+                        github="https://github.com/patrickma6199/Pondr"
                     />
                 </div>
                 <div className="min-w-min min-h-min">
@@ -68,9 +67,9 @@ const Projects: React.FC = () => {
                         title="Food Ordering App Vertical Prototype"
                         dates="Sept 2023 - Dec 2023"
                         description={[
-                            `Developed a food preordering app for a local food truck business using Android Studio and Java`,
-                            `Integrated HCI(Human-Computer Interaction) principles in the front-end design of application pages to offer striking visual uniformity and instill confidence in potential users`,
-                            `Integrated real-time updates of various app elements using a Firebase Realtime Database to allow forseamless asynchronous updates for wait times of orders`,
+                            `Developed a food preordering app for a local food truck business using Android Studio and Java to allow student's with tight scheduled to order in advance`,
+                            `Followed HCI(Human-Computer Interaction) principles in the front-end design of application pages to offer striking visual uniformity and instill confidence in potential users`,
+                            `Integrated real-time updates of various app elements such as menu items and queue placements using a Firebase Realtime Database and pub/sub to allow for seamless asynchronous updates for wait times of orders`,
                         ]}
                         technologies={[
                             <Icon src={AndroidStudioIcon} />,
@@ -87,9 +86,9 @@ const Projects: React.FC = () => {
                         dates="Jan 2023 - April 2023"
                         description={[
                             `Developed CSS front-end without component libraries to gain a better understanding of core fundamental concepts of front-end design`,
-                            `Developed MySQL relational model to keep track of users, courses, and course quiz details to betterunderstand the components of relational queries and infrastructure`,
-                            `Used PHP and SQL to develop the back-end implementations relating to account management securitysuch as unique recovery tokens, and confidential information hashing`,
-                            `Deployed using Apache and MySQL Docker Containers to attain hands-on experience withcontainerization`,
+                            `Developed MySQL relational model to keep track of users, courses, and course quiz details`,
+                            `Used PHP and SQL to develop the back-end implementations relating to account management security such as unique recovery tokens, and password hashing`,
+                            `Deployed using Apache and MySQL Docker Containers to gain initial hands-on experience with containerization technology`,
                         ]}
                         technologies={[
                             <Icon src={CSSIcon} />,
@@ -98,8 +97,7 @@ const Projects: React.FC = () => {
                             <Icon src={MySQLIcon} />,
                             <Icon src={ApacheIcon} />,
                         ]}
-                        github="https://github.com"
-                        link="https://github.com"
+                        github="https://github.com/UBCO-COSC-310-Winter-2022-T2/the-project-the-best-group"
                     />
                 </div>
             </Slider>
