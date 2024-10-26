@@ -4,8 +4,8 @@ services:
       restart: unless-stopped
       volumes:
         - ./deploy/frontend.conf:/etc/nginx/templates/nginx.conf.template
-        - ${SSL_DIR}${CERT}.crt:${NGINX_SSL_DIR}${CERT}
-        - ${SSL_DIR}${KEY}.key:${NGINX_SSL_DIR}${KEY}
+        - ${SSL_DIR}${CERT}:${NGINX_SSL_DIR}${CERT}
+        - ${SSL_DIR}${KEY}:${NGINX_SSL_DIR}${KEY}
       environment:
         NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
         CRT_LOCATION: ${NGINX_SSL_DIR}${CERT}
