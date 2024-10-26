@@ -2,7 +2,8 @@ import {Button, Drawer} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, {useEffect, useState} from 'react';
 
-const menuItems = ['Profile', 'Projects', 'Awards', 'Work'];
+// , 'Awards', 'Work'
+const menuItems = ['Profile', 'Projects'];
 
 // For URI fragment based page navigation
 const scroll = () => {

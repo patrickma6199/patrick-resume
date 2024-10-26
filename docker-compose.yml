@@ -11,6 +11,7 @@ services:
         CRT_LOCATION: ${NGINX_SSL_DIR}${CERT}.crt
         KEY_LOCATION: ${NGINX_SSL_DIR}${KEY}.key
         HOST_NAME: ${HOST_NAME}
+        TZ: ${TIMEZONE}
       build:
         context: ./
         dockerfile: ./Deploy.dockerfile

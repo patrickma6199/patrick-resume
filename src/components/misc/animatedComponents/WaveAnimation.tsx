@@ -55,7 +55,7 @@ const WaveAnimation: React.FC = () => {
 
     return (
         <motion.div
-            className="grid w-full h-[100vh] absolute z-0"
+            className="grid w-full h-[150vh] absolute z-0"
             style={{
                 gridTemplateColumns: `repeat(${GRID_WIDTH}, 1fr)`,
                 gridTemplateRows: `repeat(${GRID_HEIGHT}, 1fr)`,
