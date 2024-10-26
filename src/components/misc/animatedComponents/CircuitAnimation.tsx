@@ -6,6 +6,7 @@ import {
 } from 'framer-motion';
 import React, {useState} from 'react';
 import {useScrollContext} from '../../../contexts/ScrollContext';
+import {useIsMobile} from '../../../contexts/MobileContext';
 
 const CircuitAnimation: React.FC = () => {
     const {scrollYProgress} = useScrollContext();
@@ -17,10 +18,12 @@ const CircuitAnimation: React.FC = () => {
         setIsFixed(latest > 1);
     });
 
+    const isMobile = useIsMobile();
+
     return (
         <motion.svg
-            width="100%"
-            height="200vh"
+            width={isMobile ? '250%' : '100%'}
+            height={isMobile ? '200vh' : '200vh'}
             viewBox="0 0 1440 560"
             className="top-5 absolute z-1 pointer-events-none"
         >

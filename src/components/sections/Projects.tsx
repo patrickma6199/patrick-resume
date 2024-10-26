@@ -22,23 +22,29 @@ import GradleIcon from '../../assets/techStackLogos/gradle.svg';
 import LinuxIcon from '../../assets/techStackLogos/linux.svg';
 import BootstrapIcon from '../../assets/techStackLogos/bootstrap.svg';
 import Icon from '../misc/iconWrapper';
+import {useIsMobile} from '../../contexts/MobileContext';
 
 const Projects: React.FC = () => {
+    const isMobile = useIsMobile();
+
     const projectCardSettings: Settings = {
-        dots: true,
+        dots: !isMobile,
         infinite: true,
         autoplaySpeed: 5000,
-        adaptiveHeight: false,
+        adaptiveHeight: isMobile,
         slidesToShow: 1,
+        touchMove: isMobile,
         slidesToScroll: 1,
         autoplay: true,
         centerMode: true,
         pauseOnHover: true,
+        vertical: isMobile,
+        arrows: !isMobile,
     };
     return (
         <div className="min-w-[90%] flex flex-col justify-center items-between p-4 relative">
             <Slider {...projectCardSettings}>
-                <div className="min-w-min min-h-min">
+                <div className="min-h-[100vh] min-w-min md:min-h-min">
                     <ProjectCard
                         title="Pondr"
                         dates="Jan 2024 - Apr 2024"
@@ -62,7 +68,7 @@ const Projects: React.FC = () => {
                         github="https://github.com/patrickma6199/Pondr"
                     />
                 </div>
-                <div className="min-w-min min-h-min">
+                <div className="min-h-[100vh] min-w-min md:min-h-min">
                     <ProjectCard
                         title="Food Ordering App Vertical Prototype"
                         dates="Sept 2023 - Dec 2023"
@@ -80,7 +86,7 @@ const Projects: React.FC = () => {
                         github="https://github.com/patrickma6199/oh_nat_foods_order"
                     />
                 </div>
-                <div className="min-w-min min-h-min">
+                <div className="min-h-[100vh] min-w-min md:min-h-min">
                     <ProjectCard
                         title="InstaQuiz Website"
                         dates="Jan 2023 - April 2023"

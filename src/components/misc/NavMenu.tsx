@@ -24,7 +24,7 @@ const NavMenu: React.FC = () => {
     return (
         <>
             <Button onClick={() => setOpen(true)}>
-                <MenuIcon className="text-white" />
+                <MenuIcon className="text-light-purple" />
             </Button>
             <Drawer
                 open={open}

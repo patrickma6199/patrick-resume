@@ -9,10 +9,10 @@ import WaveAnimation from './misc/animatedComponents/WaveAnimation';
 
 const MainContent: React.FC = () => {
     return (
-        <div className="relative flex flex-col w-full items-center px-0 gap-8 box-border lg:px-40">
+        <div className="relative flex flex-col w-full items-center px-0 gap-8 box-border lg:px-40 overflow-x-hidden">
             <div
                 id="landing"
-                className="w-full min-h-[90vh] flex justify-center items-center box-border z-1"
+                className="w-full min-h-[80vh] md:min-h-[90vh] flex justify-center items-center box-border z-1"
             >
                 <HomeLogo />
             </div>

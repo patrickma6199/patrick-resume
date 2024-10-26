@@ -9,7 +9,7 @@ const App: React.FC = () => {
     const mainContentRef = React.useRef<HTMLDivElement>(null);
 
     return (
-        <div className="font-mono bg-gradient-to-br from-darker-blue to-light-blue text-white w-full h-[310vh] overflow-x-hidden overflow-y-hidden flex flex-col relative">
+        <div className="font-mono bg-gradient-to-br from-darker-blue to-light-blue text-white w-full min-h-min md:h-[310vh] overflow-x-hidden overflow-y-hidden flex flex-col relative">
             {/* Header Nav Bar */}
             <div className="flex justify-between items-center w-full font-bold h-[6vh] fixed top-0 left-0 z-10 bg-transparent">
                 <div
@@ -22,7 +22,7 @@ const App: React.FC = () => {
                         window.history.pushState(null, '', `#landing`);
                     }}
                 >
-                    <CodeIcon color="primary" />
+                    <CodeIcon className="text-lighter-blue" />
                 </div>
                 <NavMenu />
             </div>
