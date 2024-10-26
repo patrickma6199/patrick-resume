@@ -2,8 +2,9 @@ import express from 'express';
 import https from 'https';
 import fs from 'fs';
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config({ path: '../../.env' });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const { SSL_DIR, CERT, KEY, WEB_HOOK_SECRET } = process.env;
 
