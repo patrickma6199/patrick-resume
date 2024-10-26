@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config({ path: '../../.env' });
 
-const { SSL_DIR, CERT, KEY } = process.env;
+const { SSL_DIR, CERT, KEY, WEB_HOOK_SECRET } = process.env;
 
 const app = express();
 
@@ -18,6 +18,13 @@ app.use(express.json());
 
 app.post('/git-webhook', (req, res) => {
     console.log('Received a webhook event:', req.body);
+    
+    const clientSecret = req.headers['x-secret'];
+
+    if (clientSecret !== WEB_HOOK_SECRET) {
+        console.error('Invalid secret');
+        return res.status(401).send('Invalid secret');
+    }
 
     exec('./git-pull.sh', (error, stdout, stderr) => {
         if (error) {
