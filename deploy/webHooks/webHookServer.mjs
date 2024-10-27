@@ -14,9 +14,14 @@ const { SSL_DIR, CERT, KEY, WEB_HOOK_SECRET } = process.env;
 
 const app = express();
 
+const locations = {
+    key: path.join(`${SSL_DIR}`, `${KEY}`),
+    cert: path.join(`${SSL_DIR}`, `${CERT}`)
+}
+
 const options = {
-    key: fs.readFileSync(`${SSL_DIR}/${KEY}`),
-    cert: fs.readFileSync(`${SSL_DIR}/${CERT}`)
+    key: fs.readFileSync(locations.key),
+    cert: fs.readFileSync(locations.cert)
 };
 
 app.use(express.json());
@@ -51,5 +56,7 @@ app.post('/git-webhook', (req, res) => {
 const PORT = 3000;
 
 https.createServer(options, app).listen(PORT, () => {
-    console.log(`HTTPS Webhook listener running on port ${PORT}`);
+    console.log(`HTTPS Webhook listener running on port ${PORT} with\n
+        SSL Certificate: ${locations.cert}\n
+        SSL Key: ${locations.key}`);
 });
