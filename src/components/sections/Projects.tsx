@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ProjectCard from '../misc/ProjectCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../assets/css/Projects.css';
 import Slider, {Settings} from 'react-slick';
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 import AndroidStudioIcon from '../../assets/techStackLogos/android-studio.svg';
 import CSSIcon from '../../assets/techStackLogos/css.svg';
@@ -23,9 +25,12 @@ import LinuxIcon from '../../assets/techStackLogos/linux.svg';
 import BootstrapIcon from '../../assets/techStackLogos/bootstrap.svg';
 import Icon from '../misc/iconWrapper';
 import {useIsMobile} from '../../contexts/MobileContext';
+import Button from '../misc/Button';
 
 const Projects: React.FC = () => {
     const isMobile = useIsMobile();
+
+    const [autoplay, setAutoplay] = useState<boolean>(true);
 
     const projectCardSettings: Settings = {
         dots: !isMobile,
@@ -35,16 +40,16 @@ const Projects: React.FC = () => {
         slidesToShow: 1,
         touchMove: isMobile,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: autoplay,
         centerMode: true,
-        pauseOnHover: true,
+        pauseOnHover: isMobile,
         vertical: isMobile,
         arrows: !isMobile,
     };
     return (
-        <div className="min-w-[90%] flex flex-col justify-center items-between p-4 relative">
+        <div className="min-w-[90%] flex flex-col justify-center items-center p-4 relative">
             <Slider {...projectCardSettings}>
-                <div className="min-h-[100vh] min-w-min md:min-h-min">
+                <div className="min-h-[100vh] min-w-min md:min-h-min flex justify-center items-center">
                     <ProjectCard
                         title="Pondr"
                         dates="Jan 2024 - Apr 2024"
@@ -106,6 +111,22 @@ const Projects: React.FC = () => {
                     />
                 </div>
             </Slider>
+            <div className="w-full h-20 rounded-full flex justify-around items-center md:mt-20">
+                <Button
+                    onClick={() => {
+                        setAutoplay(false);
+                    }}
+                    bgColor="bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
+                    icon={<PauseIcon className="text-lg" />}
+                />
+                <Button
+                    onClick={() => {
+                        setAutoplay(true);
+                    }}
+                    bgColor="bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
+                    icon={<PlayArrowIcon className="text-lg" />}
+                />
+            </div>
         </div>
     );
 };

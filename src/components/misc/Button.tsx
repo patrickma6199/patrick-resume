@@ -1,19 +1,25 @@
 import React from 'react';
 
 type ButtonProps = {
-    text: string;
     onClick: () => void;
+    bgColor?: string;
+    text?: string;
     icon?: React.JSX.Element;
 };
 
-const Awards: React.FC<ButtonProps> = ({text, onClick, icon}) => {
+const Awards: React.FC<ButtonProps> = ({
+    text,
+    onClick,
+    icon,
+    bgColor = 'bg-gradient-to-tr from-darker-blue to-light-blue',
+}) => {
     return (
         <button
-            className="text-xs md:text-md font-semibold bg-gradient-to-tr from-darker-blue to-light-blue text-white rounded-xl p-2 shadow-lg flex flex-row items-center gap-2 justify-center"
+            className={`text-xs md:text-md font-semibold ${bgColor} text-white rounded-xl p-2 shadow-lg flex flex-row items-center gap-2 justify-center hover:scale-125 transition-all duration-500`}
             onClick={onClick}
         >
-            {icon}
-            {text}
+            {icon ?? icon}
+            {text ?? text}
         </button>
     );
 };
