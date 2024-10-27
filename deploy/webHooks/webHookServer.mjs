@@ -4,6 +4,7 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { Webhooks } from '@octokit/webhooks';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -39,7 +40,7 @@ app.post('/git-webhook', async (req, res) => {
     if (!(await webhooks.verify(body, signature))) {
         return res.status(401).send("Unauthorized");
     }
-    
+
     exec('./git-pull.sh', (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing script: ${error.message}`);
