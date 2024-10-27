@@ -24,6 +24,7 @@ export default {
       'white': '#ffffff',
       'light-purple': '#be95be',
       'dark-purple': '#4b0083',
+      'black': '#000000',
     },
     fontFamily: {
       mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],

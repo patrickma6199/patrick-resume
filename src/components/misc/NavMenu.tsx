@@ -10,7 +10,11 @@ const scroll = () => {
     const {hash} = window.location;
     const element = document.getElementById(hash?.replace('#', ''));
     if (element) {
-        element.scrollIntoView({behavior: 'smooth'});
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center',
+        });
     }
 };
 
@@ -62,7 +66,9 @@ const NavMenu: React.FC = () => {
                                 name.toLowerCase(),
                             );
                             if (element) {
-                                element.scrollIntoView({behavior: 'smooth'});
+                                element.scrollIntoView({
+                                    behavior: 'smooth',
+                                });
                             }
                             setOpen(false);
 
@@ -76,6 +82,23 @@ const NavMenu: React.FC = () => {
                         {name}
                     </Button>
                 ))}
+                <Button
+                    key={2}
+                    sx={{
+                        color: 'white',
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        minWidth: '100%',
+                        display: 'block',
+                        padding: '1rem',
+                    }}
+                    onClick={() => {
+                        window.location.href = '/bonus';
+                        setOpen(false);
+                    }}
+                >
+                    BONUS
+                </Button>
             </Drawer>
         </>
     );
