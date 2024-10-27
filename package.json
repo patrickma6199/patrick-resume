@@ -31,6 +31,7 @@
     "react-slick": "^0.30.2",
     "react-type-animation": "^3.2.0",
     "slick-carousel": "^1.8.1",
+    "stats.js": "^0.17.0",
     "three": "^0.169.0"
   },
   "devDependencies": {
@@ -51,6 +52,7 @@
     "express": "^4.21.1",
     "globals": "^15.9.0",
     "gltf-pipeline": "^4.1.0",
+    "gltfjsx": "^6.5.2",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.47",

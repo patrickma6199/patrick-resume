@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
                 >
                     <CodeIcon className="text-lighter-blue" />
                 </div>
-                <NavMenu />
+                <NavMenu atHomePage={true} />
             </div>
 
             {/* Main Content */}
