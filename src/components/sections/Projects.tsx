@@ -60,7 +60,6 @@ const Projects: React.FC = () => {
                             <Icon src={CSSIcon} />,
                             <Icon src={MySQLIcon} />,
                             <Icon src={JQueryIcon} />,
-                            <Icon src={MySQLIcon} />,
                             <Icon src={LinuxIcon} />,
                             <Icon src={ApacheIcon} />,
                             <Icon src={BootstrapIcon} />,
