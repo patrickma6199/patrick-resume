@@ -30,7 +30,7 @@ const App: React.FC = () => {
             {/* Main Content */}
             <div
                 ref={mainContentRef}
-                className="flex-1 mt-[6vh] overflow-y-auto no-scrollbar"
+                className="flex-1 mt-[6vh] overflow-y-auto no-scrollbar relative"
             >
                 <ScrollProvider parentRef={mainContentRef}>
                     <MainContent />

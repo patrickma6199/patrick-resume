@@ -10,13 +10,8 @@ import {useIsMobile} from '../../../contexts/MobileContext';
 
 const CircuitAnimation: React.FC = () => {
     const {scrollYProgress} = useScrollContext();
-    const [isFixed, setIsFixed] = useState<boolean>(false);
 
     const pathLength = useTransform(scrollYProgress, [0, 1], [0, 5]);
-
-    useMotionValueEvent(pathLength, 'change', latest => {
-        setIsFixed(latest > 1);
-    });
 
     const isMobile = useIsMobile();
 

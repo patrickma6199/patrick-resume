@@ -36,20 +36,23 @@ const Projects: React.FC = () => {
         dots: !isMobile,
         infinite: true,
         autoplaySpeed: 5000,
-        adaptiveHeight: isMobile,
+        adaptiveHeight: false,
         slidesToShow: 1,
         touchMove: isMobile,
         slidesToScroll: 1,
         autoplay: autoplay,
-        centerMode: true,
+        centerMode: !isMobile,
         pauseOnHover: isMobile,
-        vertical: isMobile,
+        swipe: isMobile,
         arrows: !isMobile,
     };
     return (
-        <div className="min-w-[90%] flex flex-col justify-center items-center p-4 relative">
-            <Slider {...projectCardSettings}>
-                <div className="min-h-[100vh] min-w-min md:min-h-min flex justify-center items-center">
+        <div className="min-w-[90%] flex flex-col justify-center items-between p-4 relative">
+            <Slider
+                {...projectCardSettings}
+                key={isMobile ? 'mobile' : 'desktop'}
+            >
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
                         title="Pondr"
                         dates="Jan 2024 - Apr 2024"
@@ -72,7 +75,7 @@ const Projects: React.FC = () => {
                         github="https://github.com/patrickma6199/Pondr"
                     />
                 </div>
-                <div className="min-h-[100vh] min-w-min md:min-h-min">
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
                         title="Food Ordering App Vertical Prototype"
                         dates="Sept 2023 - Dec 2023"
@@ -90,7 +93,7 @@ const Projects: React.FC = () => {
                         github="https://github.com/patrickma6199/oh_nat_foods_order"
                     />
                 </div>
-                <div className="min-h-[100vh] min-w-min md:min-h-min">
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
                         title="InstaQuiz Website"
                         dates="Jan 2023 - April 2023"
