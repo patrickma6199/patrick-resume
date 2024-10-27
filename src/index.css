@@ -4,6 +4,10 @@
 
 @import 'tailwindcss/utilities';
 
+:root {
+    --vh: 100vh;
+}
+
 html,
 body {
     -ms-overflow-style: none;

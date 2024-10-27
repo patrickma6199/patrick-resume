@@ -255,7 +255,7 @@ const Orbit: React.FC<{distance: number; visible: boolean}> = ({
 
     return visible ? (
         <Line
-            points={points}
+            points={[...points, points[0]]}
             color="white"
             lineWidth={0.5}
             dashed
@@ -274,7 +274,7 @@ const SpaceBackground: React.FC = () => {
 
     return (
         <mesh>
-            <sphereGeometry args={[200, 32, 32]} /> {/* Large sphere */}
+            <sphereGeometry args={[300, 32, 32]} /> {/* Large sphere */}
             <meshBasicMaterial
                 map={spaceEnvMap}
                 side={BackSide} // Render the inside of the sphere
@@ -283,7 +283,7 @@ const SpaceBackground: React.FC = () => {
     );
 };
 
-const BonusPage: React.FC = () => {
+const SpaceDemoPage: React.FC = () => {
     const [timeRate, setTimeRate] = useState<number>(0.1);
     const [showOrbits, setShowOrbits] = useState<boolean>(false);
 
@@ -315,7 +315,7 @@ const BonusPage: React.FC = () => {
     };
 
     return (
-        <div className="font-mono bg-darker-blue h-screen relative">
+        <div className="font-mono bg-darker-blue h-[calc(var(--vh)*100)] relative">
             {/* Header Nav Bar */}
             <div className="flex justify-between items-center w-full font-bold h-[6vh] fixed top-0 left-0 bg-transparent z-50">
                 <div
@@ -337,7 +337,7 @@ const BonusPage: React.FC = () => {
                     makeDefault
                     enableZoom={true} // Allow zooming
                     minDistance={5} // Minimum zoom distance
-                    maxDistance={100} // Maximum zoom distance
+                    maxDistance={200} // Maximum zoom distance
                     enablePan={false}
                     enableRotate={true}
                     enableDamping={true} // Smooth movement
@@ -366,4 +366,4 @@ const BonusPage: React.FC = () => {
     );
 };
 
-export default BonusPage;
+export default SpaceDemoPage;

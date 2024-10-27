@@ -128,7 +128,7 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
                     }}
                     onClick={() => {
                         if (atHomePage) {
-                            window.location.href = '/bonus';
+                            window.location.href = '/space';
                         }
                         setOpen(false);
                     }}
