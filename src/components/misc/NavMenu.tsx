@@ -10,11 +10,19 @@ const scroll = () => {
     const {hash} = window.location;
     const element = document.getElementById(hash?.replace('#', ''));
     if (element) {
-        element.scrollIntoView({behavior: 'smooth'});
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center',
+        });
     }
 };
 
-const NavMenu: React.FC = () => {
+type NavMenuProps = {
+    atHomePage: boolean;
+};
+
+const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -46,9 +54,36 @@ const NavMenu: React.FC = () => {
                     },
                 }}
             >
+                <Button
+                    key={0}
+                    sx={{
+                        color: 'white',
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        minWidth: '100%',
+                        display: 'block',
+                        padding: '1rem',
+                    }}
+                    onClick={() => {
+                        if (atHomePage) {
+                            const element = document.getElementById('landing');
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth',
+                                });
+                            }
+                            window.history.pushState(null, '', `#landing`);
+                        } else {
+                            window.location.href = `/#landing`;
+                        }
+                        setOpen(false);
+                    }}
+                >
+                    Home
+                </Button>
                 {menuItems.map((name, index) => (
                     <Button
-                        key={index}
+                        key={index + 1}
                         sx={{
                             color: 'white',
                             fontSize: '1rem',
@@ -58,24 +93,48 @@ const NavMenu: React.FC = () => {
                             padding: '1rem',
                         }}
                         onClick={() => {
-                            const element = document.getElementById(
-                                name.toLowerCase(),
-                            );
-                            if (element) {
-                                element.scrollIntoView({behavior: 'smooth'});
+                            if (atHomePage) {
+                                const element = document.getElementById(
+                                    name.toLowerCase(),
+                                );
+                                if (element) {
+                                    element.scrollIntoView({
+                                        behavior: 'smooth',
+                                    });
+                                }
+                                window.history.pushState(
+                                    null,
+                                    '',
+                                    `#${name.toLowerCase()}`,
+                                );
+                            } else {
+                                window.location.href = `/#${name.toLowerCase()}`;
                             }
                             setOpen(false);
-
-                            window.history.pushState(
-                                null,
-                                '',
-                                `#${name.toLowerCase()}`,
-                            );
                         }}
                     >
                         {name}
                     </Button>
                 ))}
+                <Button
+                    key={3}
+                    sx={{
+                        color: 'white',
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        minWidth: '100%',
+                        display: 'block',
+                        padding: '1rem',
+                    }}
+                    onClick={() => {
+                        if (atHomePage) {
+                            window.location.href = '/bonus';
+                        }
+                        setOpen(false);
+                    }}
+                >
+                    Space Demo
+                </Button>
             </Drawer>
         </>
     );

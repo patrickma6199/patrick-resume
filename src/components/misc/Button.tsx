@@ -15,7 +15,7 @@ const Awards: React.FC<ButtonProps> = ({
 }) => {
     return (
         <button
-            className={`text-xs md:text-md font-semibold ${bgColor} text-white rounded-xl p-2 shadow-lg flex flex-row items-center gap-2 justify-center hover:scale-125 transition-all duration-500`}
+            className={`text-xs md:text-md font-semibold ${bgColor} text-white rounded-xl p-2 shadow-lg flex flex-row items-center gap-2 justify-center hover:scale-110 transition-all duration-500`}
             onClick={onClick}
         >
             {icon ?? icon}
