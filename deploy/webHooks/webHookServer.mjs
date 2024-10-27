@@ -31,7 +31,7 @@ const options = {
 
 app.use(express.json());
 
-app.post('/git-webhook', async (req, res) => {
+app.post('/', async (req, res) => {
     console.log('Received a webhook event:', req.body);
     
     const signature = req.headers['X-Hub-Signature-256'];
