@@ -12,6 +12,10 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const { SSL_DIR, CERT, KEY, WEB_HOOK_SECRET } = process.env;
 
+const webhooks = new Webhooks({
+    secret: WEB_HOOK_SECRET,
+});
+
 const app = express();
 
 const locations = {
@@ -26,16 +30,16 @@ const options = {
 
 app.use(express.json());
 
-app.post('/git-webhook', (req, res) => {
+app.post('/git-webhook', async (req, res) => {
     console.log('Received a webhook event:', req.body);
     
-    const clientSecret = req.headers['x-secret'];
+    const signature = req.headers['X-Hub-Signature-256'];
+    const body = await req.text();
 
-    if (clientSecret !== WEB_HOOK_SECRET) {
-        console.error('Invalid secret');
-        return res.status(401).send('Invalid secret');
+    if (!(await webhooks.verify(body, signature))) {
+        return res.status(401).send("Unauthorized");
     }
-
+    
     exec('./git-pull.sh', (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing script: ${error.message}`);
