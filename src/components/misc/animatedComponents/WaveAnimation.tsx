@@ -19,7 +19,7 @@ const WaveAnimation: React.FC = () => {
                 const distance = Math.sqrt(
                     Math.pow(clickedX - x, 2) + Math.pow(clickedY - y, 2),
                 );
-                const delay = distance * (0.01 + Math.random() * 0.01);
+                const delay = distance * (0.01 + Math.random() * 0.02);
                 const upAmount = 10;
 
                 circle.animate(
@@ -55,7 +55,7 @@ const WaveAnimation: React.FC = () => {
 
     return (
         <motion.div
-            className="grid w-full h-[150vh] absolute z-0"
+            className="grid w-full h-[150vh] absolute -z-0"
             style={{
                 gridTemplateColumns: `repeat(${GRID_WIDTH}, 1fr)`,
                 gridTemplateRows: `repeat(${GRID_HEIGHT}, 1fr)`,

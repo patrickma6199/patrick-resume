@@ -15,7 +15,7 @@ const Profile: React.FC = () => {
     const yTranslation = useTransform(scrollYProgress, [0, 0.4], [1000, 0]);
 
     return isMobile ? (
-        <div className="w-screen min-h-min flex flex-col justify-center items-center p-4 overflow-x-hidden overflow-y-hidden relative">
+        <div className="w-screen min-h-min flex flex-col justify-center items-center p-4 overflow-x-hidden overflow-y-hidden relative z-10">
             <motion.img
                 src="https://avatars.githubusercontent.com/u/77289918?s=820&v=4"
                 alt="Patrick Ma"
@@ -153,7 +153,7 @@ const Profile: React.FC = () => {
             </motion.div>
         </div>
     ) : (
-        <div className="min-w-[100%] flex flex-row justify-between items-center p-4 relative">
+        <div className="min-w-[100%] flex flex-row justify-between items-center p-4 relative z-10">
             <motion.div
                 className="p-2 flex flex-col gap-4 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple rounded-3xl shadow-lg"
                 style={{y: yTranslation}}
