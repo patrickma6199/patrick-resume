@@ -7,6 +7,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 type RenderMenuProps = {
     timeRate: menuItem;
     showOrbits: menuItem;
+    ambientIntensity: menuItem;
 };
 
 interface menuItem {
@@ -15,10 +16,23 @@ interface menuItem {
     resetValue?: () => void;
 }
 
-const RenderMenu: React.FC<RenderMenuProps> = ({timeRate, showOrbits}) => {
+const RenderMenu: React.FC<RenderMenuProps> = ({
+    timeRate,
+    showOrbits,
+    ambientIntensity,
+}) => {
     const [isOpen, setIsOpen] = useState(true);
-    const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    const handleTimeSliderChange = (
+        event: Event,
+        newValue: number | number[],
+    ) => {
         timeRate.setValue(newValue as number);
+    };
+    const handleAmbientIntensitySliderChange = (
+        event: Event,
+        newValue: number | number[],
+    ) => {
+        ambientIntensity.setValue(newValue as number);
     };
 
     return (
@@ -55,9 +69,9 @@ const RenderMenu: React.FC<RenderMenuProps> = ({timeRate, showOrbits}) => {
                 </p>
                 <Slider
                     value={timeRate.value}
-                    onChange={handleSliderChange}
+                    onChange={handleTimeSliderChange}
                     min={0.01}
-                    max={1}
+                    max={2}
                     step={0.01}
                     valueLabelDisplay="auto"
                     marks
@@ -74,10 +88,29 @@ const RenderMenu: React.FC<RenderMenuProps> = ({timeRate, showOrbits}) => {
                         },
                     }}
                 />
-                <Button
-                    text="Reset Time Rate"
-                    onClick={timeRate.resetValue!}
-                    bgColor="bg-transparent"
+                <p className="text-xs md:text-sm">
+                    Ambient Intensity: {ambientIntensity.value.toFixed(2)}
+                </p>
+                <Slider
+                    value={ambientIntensity.value}
+                    onChange={handleAmbientIntensitySliderChange}
+                    min={0.01}
+                    max={2}
+                    step={0.01}
+                    valueLabelDisplay="auto"
+                    marks
+                    sx={{
+                        color: '#1976d2', // Change the main track and thumb color
+                        '& .MuiSlider-thumb': {
+                            backgroundColor: '#be95be', // Thumb color
+                        },
+                        '& .MuiSlider-track': {
+                            backgroundColor: '#1976d2', // Track color
+                        },
+                        '& .MuiSlider-rail': {
+                            backgroundColor: '#bfbfbf', // Rail color
+                        },
+                    }}
                 />
             </div>
             {!isOpen && (

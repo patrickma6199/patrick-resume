@@ -270,16 +270,15 @@ const Scene: React.FC<SceneProps> = ({timeRate}) => {
     return (
         <>
             <Star position={[0, 0, 0]} size={2} intensity={10} />
+            <ambientLight intensity={0.01} />
             {planets}
         </>
     );
 };
 
-const SpaceDemoPage: React.FC = () => {
+const ThreeBodyProblemPage: React.FC = () => {
     const [timeRate, setTimeRate] = useState<number>(0.1);
     const [showOrbits, setShowOrbits] = useState<boolean>(false);
-    const [ambientLightIntensity, setAmbientLightIntensity] =
-        useState<number>(0.01);
 
     // for hardware stats monitoring
     useEffect(() => {
@@ -338,7 +337,6 @@ const SpaceDemoPage: React.FC = () => {
                     dampingFactor={0.25}
                     rotateSpeed={1}
                 />
-                <ambientLight intensity={ambientLightIntensity} />
                 <SpaceBackground />
                 <Scene timeRate={timeRate} />
                 {planetsMetadata.map((planet, index) => (
@@ -349,20 +347,8 @@ const SpaceDemoPage: React.FC = () => {
                     />
                 ))}
             </Canvas>
-            <RenderMenu
-                timeRate={{
-                    value: timeRate,
-                    setValue: setTimeRate,
-                    resetValue: resetTimeRate,
-                }}
-                ambientIntensity={{
-                    value: ambientLightIntensity,
-                    setValue: setAmbientLightIntensity,
-                }}
-                showOrbits={{value: showOrbits, setValue: setShowOrbits}}
-            />
         </div>
     );
 };
 
-export default SpaceDemoPage;
+export default ThreeBodyProblemPage;
