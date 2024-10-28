@@ -116,7 +116,7 @@ const Lights: React.FC = () => {
                 color={'#ffffff'}
                 decay={0.4}
             />
-            <ambientLight intensity={1} color={'#ffffff'} />
+            <ambientLight intensity={0.9} color={'#ffffff'} />
         </>
     );
 };
@@ -153,17 +153,17 @@ const Scene: React.FC = () => {
 
     return (
         <>
-            <AdaptiveDpr pixelated />
             <PerspectiveCamera
                 makeDefault
                 position={[2, 10, 2]}
                 ref={cameraRef}
+                fov={20}
             />
             <OrbitControls
                 makeDefault
                 enableZoom={true} // Allow zooming
                 minDistance={0.1} // Minimum zoom distance
-                maxDistance={0.3} // Maximum zoom distance
+                maxDistance={20} // Maximum zoom distance
                 enablePan={true}
                 enableDamping={true} // Smooth movement
                 enableRotate={true}
@@ -177,7 +177,6 @@ const Scene: React.FC = () => {
                     z: cameraPosition.current.z,
                 }}
             />
-            <Scene />
             <Lights />
             <SkyBackground />
             <Baseball position={[0, 10, 0]} />
@@ -227,6 +226,7 @@ const ThreeBodyProblemPage: React.FC = () => {
 
             {/* Three.js Animation */}
             <Canvas>
+                <AdaptiveDpr pixelated />
                 <Scene />
             </Canvas>
         </div>
