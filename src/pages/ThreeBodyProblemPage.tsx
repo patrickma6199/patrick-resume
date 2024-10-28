@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef, useState} from 'react';
+import React, {Fragment, useEffect, useMemo, useRef, useState} from 'react';
 import CodeIcon from '@mui/icons-material/Code';
 import NavMenu from '../components/misc/NavMenu';
 import {Canvas, useFrame, useLoader} from '@react-three/fiber';
@@ -8,179 +8,92 @@ import {
     PerspectiveCamera,
     Line,
     OrbitControls,
+    useTexture,
+    useHelper,
 } from '@react-three/drei';
-import {TextureLoader, Texture, Mesh, BackSide, Vector3} from 'three';
+import {
+    TextureLoader,
+    Texture,
+    Mesh,
+    BackSide,
+    Vector3,
+    RepeatWrapping,
+    PointLight,
+    PointLightHelper,
+} from 'three';
 import Stats from 'stats.js';
 import RenderMenu from '../components/misc/RenderMenu';
+import {Baseball} from '../assets/models/Baseball/Draco_baseball';
 
-// General ObjectProps
-type ObjectProps = {
-    position: [number, number, number];
-    color?: string;
-    texture?: string;
-    normalMap?: string;
-    size: number;
-};
+// For Rocky Floor
+const RockyFloor: React.FC = () => {
+    const textures = useTexture({
+        normalMap: '/assets3D/environmentMaps/rockyFloor/nor_gl_4k.jpg',
+        aoMap: '/assets3D/environmentMaps/rockyFloor/arm_4k.jpg',
+        displacementMap: '/assets3D/environmentMaps/rockyFloor/disp_4k.jpg',
+        map: '/assets3D/environmentMaps/rockyFloor/diff_4k.jpg',
+        roughnessMap: '/assets3D/environmentMaps/rockyFloor/arm_4k.jpg',
+        metalnessMap: '/assets3D/environmentMaps/rockyFloor/arm_4k.jpg',
+    });
 
-interface Planet {
-    position?: [number, number, number];
-    color?: string;
-    texture?: string;
-    normalMap?: string;
-    size: number;
-}
-
-interface PlanetMetadata {
-    texture: string;
-    size: number;
-    rotationSpeed: number;
-    distance: number;
-    orbitSpeed: number;
-}
-
-const planetsMetadata: PlanetMetadata[] = [
-    {
-        texture: '/assets3D/textures/2k_mercury.jpg',
-        size: 0.25,
-        rotationSpeed: 58.6,
-        distance: 7.8,
-        orbitSpeed: 4.13,
-    },
-    {
-        texture: '/assets3D/textures/2k_venus.jpg',
-        size: 0.5,
-        rotationSpeed: -243,
-        distance: 14.4,
-        orbitSpeed: 1.62,
-    },
-    {
-        texture: '/assets3D/textures/2k_earth.jpg',
-        size: 0.55,
-        rotationSpeed: 1,
-        distance: 20,
-        orbitSpeed: 1,
-    },
-    {
-        texture: '/assets3D/textures/2k_mars.jpg',
-        size: 0.455,
-        rotationSpeed: 1.03,
-        distance: 30.4,
-        orbitSpeed: 0.53,
-    },
-    {
-        texture: '/assets3D/textures/2k_jupiter.jpg',
-        size: 1.5,
-        rotationSpeed: 0.41,
-        distance: 104,
-        orbitSpeed: 0.084,
-    },
-    {
-        texture: '/assets3D/textures/2k_saturn.jpg',
-        size: 1.2,
-        rotationSpeed: 0.45,
-        distance: 191.6,
-        orbitSpeed: 0.037,
-    },
-    {
-        texture: '/assets3D/textures/2k_uranus.jpg',
-        size: 1,
-        rotationSpeed: -0.72,
-        distance: 383.6,
-        orbitSpeed: 0.012,
-    },
-    {
-        texture: '/assets3D/textures/2k_neptune.jpg',
-        size: 1,
-        rotationSpeed: 0.67,
-        distance: 601.4,
-        orbitSpeed: 0.006,
-    },
-];
-
-// For Stars
-type StarProps = ObjectProps & {
-    intensity: number;
-};
-
-const Star: React.FC<StarProps> = ({
-    position,
-    color,
-    size,
-    intensity,
-    texture,
-}) => {
-    const starTexture: Texture = useLoader(
-        TextureLoader,
-        texture || '/assets3D/textures/2k_sun.jpg',
-    );
+    // Apply RepeatWrapping and set repeat values for each texture
+    useMemo(() => {
+        Object.values(textures).forEach(texture => {
+            texture.wrapS = RepeatWrapping;
+            texture.wrapT = RepeatWrapping;
+            texture.repeat.set(2, 2); // Adjust this for the desired tiling effect
+        });
+    }, [textures]);
 
     return (
         <>
-            <pointLight
-                position={position}
-                color={color}
-                intensity={intensity}
-                decay={0.1}
-            />
-            <mesh position={position}>
-                <sphereGeometry args={[size, 128, 128]} />
-                <meshPhongMaterial
-                    emissiveMap={starTexture}
-                    color={color || undefined}
-                    emissive={'#ffaa00'}
-                    emissiveIntensity={6}
-                />
+            <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
+                <planeGeometry args={[100, 100, 256, 256]} />
+                <meshStandardMaterial {...textures} displacementScale={2} />
             </mesh>
+
+            {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2} position-y={1}>
+                <planeGeometry args={[100, 100, 256, 256]} />
+                <meshStandardMaterial
+                    normalMap={textures.normalMap}
+                    aoMap={textures.aoMap}
+                    displacementMap={textures.displacementMap}
+                    wireframe color='white' />
+            </mesh> */}
         </>
     );
 };
 
-// For Planets
+// For Lights
+const Lights: React.FC = () => {
+    const lightRef = useRef<PointLight>(null!);
 
-type PlanetProps = ObjectProps & {
-    planetRef: React.RefObject<Mesh>;
-};
-
-const Planet: React.FC<PlanetProps> = ({
-    position,
-    color,
-    size,
-    texture,
-    normalMap,
-    planetRef,
-}) => {
-    const planetTexture: Texture = useLoader(
-        TextureLoader,
-        texture || '/assets3D/textures/2k_earth.jpg',
-    );
-    const planetNormalMap: Texture = useLoader(
-        TextureLoader,
-        normalMap || '/assets3D/normalMaps/2k_earth_normal_map.png',
-    );
-
+    useHelper(lightRef, PointLightHelper, 1, 'white');
     return (
-        <mesh ref={planetRef} position={position}>
-            <sphereGeometry args={[size, 128, 128]} />
-            <meshPhysicalMaterial
-                color={color || undefined}
-                normalMap={planetNormalMap}
-                map={planetTexture}
+        <>
+            <pointLight
+                ref={lightRef}
+                position={[-50, 50, 50]}
+                intensity={25}
+                color={'#ffffff'}
+                decay={0.4}
             />
-        </mesh>
+            <ambientLight intensity={1} color={'#ffffff'} />
+        </>
     );
 };
 
-// For Space Background
-const SpaceBackground: React.FC = () => {
+// For Sky Background
+const SkyBackground: React.FC = () => {
     const spaceEnvMap: Texture = useLoader(
         TextureLoader,
-        '/assets3D/environmentMaps/2k_stars_milky_way.jpg',
+        '/assets3D/environmentMaps/quarry_01_puresky.jpg',
     );
 
     return (
-        <mesh>
+        <mesh rotation-y={Math.PI} position={[0, 0, 0]}>
             <sphereGeometry args={[1000, 32, 32]} /> {/* Large sphere */}
-            <meshBasicMaterial
+            <meshPhongMaterial
                 map={spaceEnvMap}
                 side={BackSide} // Render the inside of the sphere
             />
@@ -188,98 +101,17 @@ const SpaceBackground: React.FC = () => {
     );
 };
 
-// For Orbits
-const Orbit: React.FC<{distance: number; visible: boolean}> = ({
-    distance,
-    visible,
-}) => {
-    const numPoints = 200;
-    const points = Array.from({length: numPoints}, (_, i) => {
-        const angle = (i / numPoints) * 2 * Math.PI;
-        return new Vector3(
-            Math.cos(angle) * distance,
-            0,
-            Math.sin(angle) * distance,
-        );
-    });
-
-    return visible ? (
-        <Line points={[...points, points[0]]} color="white" lineWidth={1} />
-    ) : null;
-};
-
-// For Whole Scene
-type SceneProps = {
-    timeRate: number;
-};
-
-const Scene: React.FC<SceneProps> = ({timeRate}) => {
-    const planetRefs = useRef<(React.RefObject<Mesh> | null)[]>([]);
-
-    const planets: React.JSX.Element[] = [];
-
-    for (let i = 0; i < planetsMetadata.length; i++) {
-        const planetRef = React.createRef<Mesh>();
-        planetRefs.current[i] = planetRef;
-
-        planets.push(
-            <Fragment key={i}>
-                <Planet
-                    key={i}
-                    position={[
-                        Math.cos(-i) * planetsMetadata[i].distance,
-                        0,
-                        Math.sin(-i) * planetsMetadata[i].distance,
-                    ]}
-                    planetRef={planetRef}
-                    normalMap={
-                        i === 2
-                            ? '/assets3D/normalMaps/2k_earth_normal_map.png'
-                            : undefined
-                    }
-                    size={planetsMetadata[i].size}
-                    texture={planetsMetadata[i].texture}
-                />
-            </Fragment>,
-        );
-    }
-
-    // Rotate the planets and manage trail visibility
-    useFrame((state, delta) => {
-        planetRefs.current.forEach((planetRef, index) => {
-            if (planetRef && planetRef.current) {
-                planetRef.current.rotation.y +=
-                    delta * planetsMetadata[index].rotationSpeed;
-
-                // Update position to make it orbit around the sun
-                const distance = planetsMetadata[index].distance;
-                const elapsedTime = state.clock.getElapsedTime();
-                const angle =
-                    elapsedTime *
-                    planetsMetadata[index].orbitSpeed *
-                    2 *
-                    Math.PI *
-                    timeRate;
-
-                planetRef.current.position.x = Math.cos(-angle) * distance;
-                planetRef.current.position.z = Math.sin(-angle) * distance;
-            }
-        });
-    });
-
+// For Scene
+const Scene: React.FC = () => {
     return (
         <>
-            <Star position={[0, 0, 0]} size={2} intensity={10} />
-            <ambientLight intensity={0.01} />
-            {planets}
+            <RockyFloor />
+            {/* <gridHelper args={[100, 100]} /> */}
         </>
     );
 };
 
 const ThreeBodyProblemPage: React.FC = () => {
-    const [timeRate, setTimeRate] = useState<number>(0.1);
-    const [showOrbits, setShowOrbits] = useState<boolean>(false);
-
     // for hardware stats monitoring
     useEffect(() => {
         const stats = new Stats();
@@ -303,12 +135,8 @@ const ThreeBodyProblemPage: React.FC = () => {
         };
     }, []);
 
-    const resetTimeRate = () => {
-        setTimeRate(0.1);
-    };
-
     return (
-        <div className="font-mono bg-darker-blue h-[calc(var(--vh)*100)] relative">
+        <div className="font-mono bg-black h-[calc(var(--vh)*100)] relative">
             {/* Header Nav Bar */}
             <div className="flex justify-between items-center w-full font-bold h-[6vh] fixed top-0 left-0 bg-transparent z-50">
                 <div
@@ -325,27 +153,23 @@ const ThreeBodyProblemPage: React.FC = () => {
             {/* Three.js Animation */}
             <Canvas>
                 <AdaptiveDpr pixelated />
-                <PerspectiveCamera makeDefault position={[0, 50, 50]} />
+                <PerspectiveCamera makeDefault position={[2, 10, 2]} />
                 <OrbitControls
                     makeDefault
                     enableZoom={true} // Allow zooming
-                    minDistance={5} // Minimum zoom distance
-                    maxDistance={700} // Maximum zoom distance
-                    enablePan={false}
-                    enableRotate={true}
+                    minDistance={0.1} // Minimum zoom distance
+                    maxDistance={0.3} // Maximum zoom distance
+                    enablePan={true}
                     enableDamping={true} // Smooth movement
+                    enableRotate={true}
                     dampingFactor={0.25}
-                    rotateSpeed={1}
+                    rotateSpeed={0.5}
+                    target={new Vector3(0, 10, 0)}
                 />
-                <SpaceBackground />
-                <Scene timeRate={timeRate} />
-                {planetsMetadata.map((planet, index) => (
-                    <Orbit
-                        key={index}
-                        distance={planet.distance}
-                        visible={showOrbits}
-                    />
-                ))}
+                <Scene />
+                <Lights />
+                <SkyBackground />
+                <Baseball position={[0, 10, 0]} />
             </Canvas>
         </div>
     );
