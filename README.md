@@ -1,6 +1,14 @@
-# Patrick's Static Portfolio React App
+# Patrick's Portfolio React App
 
-## 1. Commands
+## 1. Major Dependencies
+- React with Vite
+- Typescript
+- Eslint and Prettier
+- Framer Motion
+- Three.js (Fiber) with Drei
+- MUI Component Library
+
+## 2. Commands
 
 ```bash
 yarn            # Equivalent to 'yarn i' or 'yarn install'
@@ -9,7 +17,7 @@ yarn dev        # For hot-reloading development session
 yarn format     # For Prettier formatting
 ```
 
-## 2. Certificate Set-up
+## 3. Certificate Set-up
 
 ### a. Generating Unsigned Certificates
 
