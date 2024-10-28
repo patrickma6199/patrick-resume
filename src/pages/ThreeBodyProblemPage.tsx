@@ -105,8 +105,23 @@ const SkyBackground: React.FC = () => {
 const Scene: React.FC = () => {
     return (
         <>
+            <PerspectiveCamera makeDefault position={[2, 10, 2]} />
+            <OrbitControls
+                makeDefault
+                enableZoom={true} // Allow zooming
+                minDistance={0.1} // Minimum zoom distance
+                maxDistance={0.3} // Maximum zoom distance
+                enablePan={true}
+                enableDamping={true} // Smooth movement
+                enableRotate={true}
+                dampingFactor={0.25}
+                rotateSpeed={0.5}
+                target={new Vector3(0, 10, 0)}
+            />
+            <Lights />
+            <SkyBackground />
             <RockyFloor />
-            {/* <gridHelper args={[100, 100]} /> */}
+            <Baseball position={[0, 10, 0]} />
         </>
     );
 };
@@ -153,23 +168,7 @@ const ThreeBodyProblemPage: React.FC = () => {
             {/* Three.js Animation */}
             <Canvas>
                 <AdaptiveDpr pixelated />
-                <PerspectiveCamera makeDefault position={[2, 10, 2]} />
-                <OrbitControls
-                    makeDefault
-                    enableZoom={true} // Allow zooming
-                    minDistance={0.1} // Minimum zoom distance
-                    maxDistance={0.3} // Maximum zoom distance
-                    enablePan={true}
-                    enableDamping={true} // Smooth movement
-                    enableRotate={true}
-                    dampingFactor={0.25}
-                    rotateSpeed={0.5}
-                    target={new Vector3(0, 10, 0)}
-                />
                 <Scene />
-                <Lights />
-                <SkyBackground />
-                <Baseball position={[0, 10, 0]} />
             </Canvas>
         </div>
     );
