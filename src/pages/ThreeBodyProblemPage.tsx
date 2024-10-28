@@ -105,12 +105,12 @@ const SkyBackground: React.FC = () => {
 const Scene: React.FC = () => {
     return (
         <>
-            <PerspectiveCamera makeDefault position={[2, 10, 2]} />
+            <PerspectiveCamera makeDefault position={[2, 10, 2]} fov={20} />
             <OrbitControls
                 makeDefault
                 enableZoom={true} // Allow zooming
-                minDistance={0.1} // Minimum zoom distance
-                maxDistance={0.3} // Maximum zoom distance
+                minDistance={0.3} // Minimum zoom distance
+                maxDistance={10} // Maximum zoom distance
                 enablePan={true}
                 enableDamping={true} // Smooth movement
                 enableRotate={true}
