@@ -11,7 +11,7 @@ import {
     useTexture,
     useHelper,
 } from '@react-three/drei';
-import {
+import THREE, {
     TextureLoader,
     Texture,
     Mesh,
@@ -26,7 +26,14 @@ import RenderMenu from '../components/misc/RenderMenu';
 import {Baseball} from '../assets/models/Baseball/Draco_baseball';
 
 // For Rocky Floor
-const RockyFloor: React.FC = () => {
+interface RockyFloorProps {
+    cameraPosition: {
+        x: number;
+        z: number;
+    };
+}
+
+const RockyFloor: React.FC<RockyFloorProps> = ({cameraPosition}) => {
     const textures = useTexture({
         normalMap: '/assets3D/environmentMaps/rockyFloor/nor_gl_4k.jpg',
         aoMap: '/assets3D/environmentMaps/rockyFloor/arm_4k.jpg',
@@ -35,6 +42,9 @@ const RockyFloor: React.FC = () => {
         roughnessMap: '/assets3D/environmentMaps/rockyFloor/arm_4k.jpg',
         metalnessMap: '/assets3D/environmentMaps/rockyFloor/arm_4k.jpg',
     });
+
+    const planeSize = 100; // Size of each plane
+    const count = 9; // Number of planes to generate
 
     // Apply RepeatWrapping and set repeat values for each texture
     useMemo(() => {
@@ -45,21 +55,49 @@ const RockyFloor: React.FC = () => {
         });
     }, [textures]);
 
+    // Create a ref to store the number of planes and their positions
+    const planesRef = useRef<Mesh[]>([]);
+
+    // Generate planes based on the camera position
+    useFrame(() => {
+        planesRef.current.forEach((plane, index) => {
+            const xOffset = (index % 3) * planeSize; // X position based on the index
+            const zOffset = Math.floor(index / 3) * planeSize; // Z position based on the index
+
+            // Calculate the position based on camera position
+            if (plane) {
+                plane.position.set(
+                    xOffset - planeSize * 1.5 + cameraPosition.x, // Center the planes around the camera's x position
+                    0, // Keep the y position constant
+                    zOffset - planeSize * 1.5 + cameraPosition.z, // Center the planes around the camera's z position
+                );
+
+                // Make the plane visible only within the view range
+                plane.visible =
+                    Math.abs(plane.position.z - cameraPosition.z) < 500 &&
+                    Math.abs(plane.position.x - cameraPosition.x) < 500;
+            }
+        });
+    });
+
+    // Create planes
     return (
         <>
-            <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
-                <planeGeometry args={[100, 100, 256, 256]} />
-                <meshStandardMaterial {...textures} displacementScale={2} />
-            </mesh>
-
-            {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2} position-y={1}>
-                <planeGeometry args={[100, 100, 256, 256]} />
-                <meshStandardMaterial
-                    normalMap={textures.normalMap}
-                    aoMap={textures.aoMap}
-                    displacementMap={textures.displacementMap}
-                    wireframe color='white' />
-            </mesh> */}
+            {Array.from(new Array(count)).map((_, index) => {
+                const planeRef = useRef<Mesh>(null!);
+                planesRef.current[index] = planeRef.current; // Store the reference to the plane
+                return (
+                    <mesh key={index} ref={planeRef} rotation-x={-Math.PI / 2}>
+                        <planeGeometry
+                            args={[planeSize, planeSize, 256, 256]}
+                        />
+                        <meshStandardMaterial
+                            {...textures}
+                            displacementScale={2}
+                        />
+                    </mesh>
+                );
+            })}
         </>
     );
 };
@@ -103,9 +141,46 @@ const SkyBackground: React.FC = () => {
 
 // For Scene
 const Scene: React.FC = () => {
+    const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
+    const cameraPosition = useRef({x: 2, y: 10, z: 2});
+
+    useFrame(() => {
+        if (cameraRef.current) {
+            cameraPosition.current.x = cameraRef.current.position.x;
+            cameraPosition.current.z = cameraRef.current.position.z;
+        }
+    });
+
     return (
         <>
-            <RockyFloor />
+            <AdaptiveDpr pixelated />
+            <PerspectiveCamera
+                makeDefault
+                position={[2, 10, 2]}
+                ref={cameraRef}
+            />
+            <OrbitControls
+                makeDefault
+                enableZoom={true} // Allow zooming
+                minDistance={0.1} // Minimum zoom distance
+                maxDistance={0.3} // Maximum zoom distance
+                enablePan={true}
+                enableDamping={true} // Smooth movement
+                enableRotate={true}
+                dampingFactor={0.25}
+                rotateSpeed={0.5}
+                target={new Vector3(0, 10, 0)}
+            />
+            <RockyFloor
+                cameraPosition={{
+                    x: cameraPosition.current.x,
+                    z: cameraPosition.current.z,
+                }}
+            />
+            <Scene />
+            <Lights />
+            <SkyBackground />
+            <Baseball position={[0, 10, 0]} />
             {/* <gridHelper args={[100, 100]} /> */}
         </>
     );
@@ -152,24 +227,7 @@ const ThreeBodyProblemPage: React.FC = () => {
 
             {/* Three.js Animation */}
             <Canvas>
-                <AdaptiveDpr pixelated />
-                <PerspectiveCamera makeDefault position={[2, 10, 2]} />
-                <OrbitControls
-                    makeDefault
-                    enableZoom={true} // Allow zooming
-                    minDistance={0.1} // Minimum zoom distance
-                    maxDistance={0.3} // Maximum zoom distance
-                    enablePan={true}
-                    enableDamping={true} // Smooth movement
-                    enableRotate={true}
-                    dampingFactor={0.25}
-                    rotateSpeed={0.5}
-                    target={new Vector3(0, 10, 0)}
-                />
                 <Scene />
-                <Lights />
-                <SkyBackground />
-                <Baseball position={[0, 10, 0]} />
             </Canvas>
         </div>
     );
