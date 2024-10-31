@@ -1,7 +1,7 @@
-import React, {Fragment, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import CodeIcon from '@mui/icons-material/Code';
 import NavMenu from '../components/misc/NavMenu';
-import {Canvas, useFrame, useLoader} from '@react-three/fiber';
+import {Canvas, useLoader} from '@react-three/fiber';
 import {
     AdaptiveDpr,
     CameraControls,
@@ -10,6 +10,7 @@ import {
     OrbitControls,
     useTexture,
     useHelper,
+    Loader,
 } from '@react-three/drei';
 import {
     TextureLoader,
@@ -22,7 +23,6 @@ import {
     PointLightHelper,
 } from 'three';
 import Stats from 'stats.js';
-import RenderMenu from '../components/misc/RenderMenu';
 import {Baseball} from '../assets/models/Baseball/Draco_baseball';
 
 // For Rocky Floor
@@ -170,6 +170,7 @@ const ThreeBodyProblemPage: React.FC = () => {
                 <AdaptiveDpr pixelated />
                 <Scene />
             </Canvas>
+            <Loader />
         </div>
     );
 };

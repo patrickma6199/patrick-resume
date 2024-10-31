@@ -8,10 +8,18 @@ import {
     PerspectiveCamera,
     Line,
     OrbitControls,
+    Loader,
 } from '@react-three/drei';
 import {TextureLoader, Texture, Mesh, BackSide, Vector3} from 'three';
 import Stats from 'stats.js';
-import RenderMenu from '../components/misc/RenderMenu';
+import {
+    Bloom,
+    DepthOfField,
+    EffectComposer,
+    Noise,
+    Vignette,
+} from '@react-three/postprocessing';
+import {useControls} from 'leva';
 
 // General ObjectProps
 type ObjectProps = {
@@ -41,56 +49,56 @@ interface PlanetMetadata {
 const planetsMetadata: PlanetMetadata[] = [
     {
         texture: '/assets3D/textures/2k_mercury.jpg',
-        size: 0.25,
+        size: 0.076,
         rotationSpeed: 0.17,
         distance: 7.8,
         orbitSpeed: 4.13,
     },
     {
         texture: '/assets3D/textures/2k_venus.jpg',
-        size: 0.5,
+        size: 0.19,
         rotationSpeed: -0.041,
         distance: 14.4,
         orbitSpeed: 1.62,
     },
     {
         texture: '/assets3D/textures/2k_earth.jpg',
-        size: 0.55,
+        size: 0.2,
         rotationSpeed: 10,
         distance: 20,
         orbitSpeed: 1,
     },
     {
         texture: '/assets3D/textures/2k_mars.jpg',
-        size: 0.455,
+        size: 0.106,
         rotationSpeed: 9.7,
         distance: 30.4,
         orbitSpeed: 0.53,
     },
     {
         texture: '/assets3D/textures/2k_jupiter.jpg',
-        size: 1.5,
+        size: 2.242,
         rotationSpeed: 24.4,
         distance: 104,
         orbitSpeed: 0.084,
     },
     {
         texture: '/assets3D/textures/2k_saturn.jpg',
-        size: 1.2,
+        size: 1.89,
         rotationSpeed: 22.2,
         distance: 191.6,
         orbitSpeed: 0.037,
     },
     {
         texture: '/assets3D/textures/2k_uranus.jpg',
-        size: 1,
+        size: 0.802,
         rotationSpeed: -13.9,
         distance: 383.6,
         orbitSpeed: 0.012,
     },
     {
         texture: '/assets3D/textures/2k_neptune.jpg',
-        size: 1,
+        size: 0.776,
         rotationSpeed: 14.9,
         distance: 601.4,
         orbitSpeed: 0.006,
@@ -276,10 +284,11 @@ const Scene: React.FC<SceneProps> = ({timeRate}) => {
 };
 
 const SpaceDemoPage: React.FC = () => {
-    const [timeRate, setTimeRate] = useState<number>(0.1);
-    const [showOrbits, setShowOrbits] = useState<boolean>(false);
-    const [ambientLightIntensity, setAmbientLightIntensity] =
-        useState<number>(0.01);
+    const {timeRate, showOrbits, ambientLightIntensity} = useControls({
+        timeRate: 0.1,
+        showOrbits: false,
+        ambientLightIntensity: 0.01,
+    });
 
     // for hardware stats monitoring
     useEffect(() => {
@@ -303,10 +312,6 @@ const SpaceDemoPage: React.FC = () => {
             document.body.removeChild(stats.dom);
         };
     }, []);
-
-    const resetTimeRate = () => {
-        setTimeRate(0.1);
-    };
 
     return (
         <div className="font-mono bg-darker-blue h-[calc(var(--vh)*100)] relative">
@@ -348,19 +353,16 @@ const SpaceDemoPage: React.FC = () => {
                         visible={showOrbits}
                     />
                 ))}
+                <EffectComposer>
+                    <Bloom
+                        luminanceThreshold={0.9}
+                        luminanceSmoothing={0.025}
+                        intensity={0.2}
+                    />
+                    <Vignette eskil={false} offset={0.1} darkness={1.1} />
+                </EffectComposer>
             </Canvas>
-            <RenderMenu
-                timeRate={{
-                    value: timeRate,
-                    setValue: setTimeRate,
-                    resetValue: resetTimeRate,
-                }}
-                ambientIntensity={{
-                    value: ambientLightIntensity,
-                    setValue: setAmbientLightIntensity,
-                }}
-                showOrbits={{value: showOrbits, setValue: setShowOrbits}}
-            />
+            <Loader />
         </div>
     );
 };
