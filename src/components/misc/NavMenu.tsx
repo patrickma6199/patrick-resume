@@ -31,7 +31,12 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
 
     return (
         <>
-            <Button onClick={() => setOpen(true)}>
+            <Button
+                onClick={() => setOpen(true)}
+                sx={{
+                    zIndex: 1000,
+                }}
+            >
                 <MenuIcon className="text-light-purple" />
             </Button>
             <Drawer

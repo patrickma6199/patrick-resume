@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SpaceDemoPage from './pages/SpaceDemoPage';
+import ThreeBodyProblemPage from './pages/ThreeBodyProblemPage';
 
 const App: React.FC = () => {
     useEffect(() => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/space" element={<SpaceDemoPage />} />
+                <Route path="/three_body" element={<ThreeBodyProblemPage />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
         </BrowserRouter>

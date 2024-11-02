@@ -8,10 +8,18 @@ import {
     PerspectiveCamera,
     Line,
     OrbitControls,
+    Loader,
 } from '@react-three/drei';
 import {TextureLoader, Texture, Mesh, BackSide, Vector3} from 'three';
 import Stats from 'stats.js';
-import RenderMenu from '../components/misc/RenderMenu';
+import {
+    Bloom,
+    DepthOfField,
+    EffectComposer,
+    Noise,
+    Vignette,
+} from '@react-three/postprocessing';
+import {useControls} from 'leva';
 
 // General ObjectProps
 type ObjectProps = {
@@ -41,58 +49,58 @@ interface PlanetMetadata {
 const planetsMetadata: PlanetMetadata[] = [
     {
         texture: '/assets3D/textures/2k_mercury.jpg',
-        size: 0.25,
-        rotationSpeed: 2,
-        distance: 10,
+        size: 0.076,
+        rotationSpeed: 0.17,
+        distance: 7.8,
         orbitSpeed: 4.13,
     },
     {
         texture: '/assets3D/textures/2k_venus.jpg',
-        size: 0.5,
-        rotationSpeed: 1.5,
-        distance: 15,
+        size: 0.19,
+        rotationSpeed: -0.041,
+        distance: 14.4,
         orbitSpeed: 1.62,
     },
     {
         texture: '/assets3D/textures/2k_earth.jpg',
-        size: 0.55,
-        rotationSpeed: 1,
+        size: 0.2,
+        rotationSpeed: 10,
         distance: 20,
         orbitSpeed: 1,
     },
     {
         texture: '/assets3D/textures/2k_mars.jpg',
-        size: 0.455,
-        rotationSpeed: 1.5,
-        distance: 25,
+        size: 0.106,
+        rotationSpeed: 9.7,
+        distance: 30.4,
         orbitSpeed: 0.53,
     },
     {
         texture: '/assets3D/textures/2k_jupiter.jpg',
-        size: 1.5,
-        rotationSpeed: 0.5,
-        distance: 30,
+        size: 2.242,
+        rotationSpeed: 24.4,
+        distance: 104,
         orbitSpeed: 0.084,
     },
     {
         texture: '/assets3D/textures/2k_saturn.jpg',
-        size: 1.2,
-        rotationSpeed: 0.75,
-        distance: 35,
+        size: 1.89,
+        rotationSpeed: 22.2,
+        distance: 191.6,
         orbitSpeed: 0.037,
     },
     {
         texture: '/assets3D/textures/2k_uranus.jpg',
-        size: 1,
-        rotationSpeed: 0.75,
-        distance: 40,
+        size: 0.802,
+        rotationSpeed: -13.9,
+        distance: 383.6,
         orbitSpeed: 0.012,
     },
     {
         texture: '/assets3D/textures/2k_neptune.jpg',
-        size: 1,
-        rotationSpeed: 0.75,
-        distance: 45,
+        size: 0.776,
+        rotationSpeed: 14.9,
+        distance: 601.4,
         orbitSpeed: 0.006,
     },
 ];
@@ -128,7 +136,7 @@ const Star: React.FC<StarProps> = ({
                     emissiveMap={starTexture}
                     color={color || undefined}
                     emissive={'#ffaa00'}
-                    emissiveIntensity={10}
+                    emissiveIntensity={6}
                 />
             </mesh>
         </>
@@ -161,13 +169,51 @@ const Planet: React.FC<PlanetProps> = ({
     return (
         <mesh ref={planetRef} position={position}>
             <sphereGeometry args={[size, 128, 128]} />
-            <meshPhongMaterial
+            <meshPhysicalMaterial
                 color={color || undefined}
                 normalMap={planetNormalMap}
                 map={planetTexture}
             />
         </mesh>
     );
+};
+
+// For Space Background
+const SpaceBackground: React.FC = () => {
+    const spaceEnvMap: Texture = useLoader(
+        TextureLoader,
+        '/assets3D/environmentMaps/2k_stars_milky_way.jpg',
+    );
+
+    return (
+        <mesh>
+            <sphereGeometry args={[1000, 32, 32]} /> {/* Large sphere */}
+            <meshBasicMaterial
+                map={spaceEnvMap}
+                side={BackSide} // Render the inside of the sphere
+            />
+        </mesh>
+    );
+};
+
+// For Orbits
+const Orbit: React.FC<{distance: number; visible: boolean}> = ({
+    distance,
+    visible,
+}) => {
+    const numPoints = 200;
+    const points = Array.from({length: numPoints}, (_, i) => {
+        const angle = (i / numPoints) * 2 * Math.PI;
+        return new Vector3(
+            Math.cos(angle) * distance,
+            0,
+            Math.sin(angle) * distance,
+        );
+    });
+
+    return visible ? (
+        <Line points={[...points, points[0]]} color="white" lineWidth={1} />
+    ) : null;
 };
 
 // For Whole Scene
@@ -189,9 +235,9 @@ const Scene: React.FC<SceneProps> = ({timeRate}) => {
                 <Planet
                     key={i}
                     position={[
-                        Math.cos(i) * planetsMetadata[i].distance,
+                        Math.cos(-i) * planetsMetadata[i].distance,
                         0,
-                        Math.sin(i) * planetsMetadata[i].distance,
+                        Math.sin(-i) * planetsMetadata[i].distance,
                     ]}
                     planetRef={planetRef}
                     normalMap={
@@ -223,8 +269,8 @@ const Scene: React.FC<SceneProps> = ({timeRate}) => {
                     Math.PI *
                     timeRate;
 
-                planetRef.current.position.x = Math.cos(angle) * distance;
-                planetRef.current.position.z = Math.sin(angle) * distance;
+                planetRef.current.position.x = Math.cos(-angle) * distance;
+                planetRef.current.position.z = Math.sin(-angle) * distance;
             }
         });
     });
@@ -232,60 +278,17 @@ const Scene: React.FC<SceneProps> = ({timeRate}) => {
     return (
         <>
             <Star position={[0, 0, 0]} size={2} intensity={10} />
-            <ambientLight intensity={0.1} />
             {planets}
         </>
     );
 };
 
-// For Orbits
-const Orbit: React.FC<{distance: number; visible: boolean}> = ({
-    distance,
-    visible,
-}) => {
-    const numPoints = 200;
-    const points = Array.from({length: numPoints}, (_, i) => {
-        const angle = (i / numPoints) * 2 * Math.PI;
-        return new Vector3(
-            Math.cos(angle) * distance,
-            0,
-            Math.sin(angle) * distance,
-        );
-    });
-
-    return visible ? (
-        <Line
-            points={[...points, points[0]]}
-            color="white"
-            lineWidth={0.5}
-            dashed
-            dashSize={0.1} // length of each dash
-            gapSize={0.1} // gap between dashes
-        />
-    ) : null;
-};
-
-// For Space Background
-const SpaceBackground: React.FC = () => {
-    const spaceEnvMap: Texture = useLoader(
-        TextureLoader,
-        '/assets3D/environmentMaps/2k_stars_milky_way.jpg',
-    );
-
-    return (
-        <mesh>
-            <sphereGeometry args={[300, 32, 32]} /> {/* Large sphere */}
-            <meshBasicMaterial
-                map={spaceEnvMap}
-                side={BackSide} // Render the inside of the sphere
-            />
-        </mesh>
-    );
-};
-
 const SpaceDemoPage: React.FC = () => {
-    const [timeRate, setTimeRate] = useState<number>(0.1);
-    const [showOrbits, setShowOrbits] = useState<boolean>(false);
+    const {timeRate, showOrbits, ambientLightIntensity} = useControls({
+        timeRate: 0.1,
+        showOrbits: false,
+        ambientLightIntensity: 0.01,
+    });
 
     // for hardware stats monitoring
     useEffect(() => {
@@ -310,10 +313,6 @@ const SpaceDemoPage: React.FC = () => {
         };
     }, []);
 
-    const resetTimeRate = () => {
-        setTimeRate(0.1);
-    };
-
     return (
         <div className="font-mono bg-darker-blue h-[calc(var(--vh)*100)] relative">
             {/* Header Nav Bar */}
@@ -337,13 +336,14 @@ const SpaceDemoPage: React.FC = () => {
                     makeDefault
                     enableZoom={true} // Allow zooming
                     minDistance={5} // Minimum zoom distance
-                    maxDistance={200} // Maximum zoom distance
+                    maxDistance={700} // Maximum zoom distance
                     enablePan={false}
                     enableRotate={true}
                     enableDamping={true} // Smooth movement
                     dampingFactor={0.25}
                     rotateSpeed={1}
                 />
+                <ambientLight intensity={ambientLightIntensity} />
                 <SpaceBackground />
                 <Scene timeRate={timeRate} />
                 {planetsMetadata.map((planet, index) => (
@@ -353,15 +353,16 @@ const SpaceDemoPage: React.FC = () => {
                         visible={showOrbits}
                     />
                 ))}
+                <EffectComposer>
+                    <Bloom
+                        luminanceThreshold={0.9}
+                        luminanceSmoothing={0.025}
+                        intensity={0.2}
+                    />
+                    <Vignette eskil={false} offset={0.1} darkness={1.1} />
+                </EffectComposer>
             </Canvas>
-            <RenderMenu
-                timeRate={{
-                    value: timeRate,
-                    setValue: setTimeRate,
-                    resetValue: resetTimeRate,
-                }}
-                showOrbits={{value: showOrbits, setValue: setShowOrbits}}
-            />
+            <Loader />
         </div>
     );
 };
