@@ -13,6 +13,7 @@ type ProjectCardProps = {
     dates: string;
     description: string[];
     technologies: React.JSX.Element[];
+    warning?: string;
     github?: string;
     link?: string;
 };
@@ -22,6 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     dates,
     description,
     technologies,
+    warning,
     github,
     link,
 }) => {
@@ -73,6 +75,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                             text="Link"
                             icon={<OpenInBrowserIcon />}
                         />
+                    )}
+                    {warning && (
+                        <p className="font-bold text-xs md:text-sm">
+                            {warning}
+                        </p>
                     )}
                 </div>
             </div>

@@ -5,7 +5,6 @@ import Projects from './sections/Projects';
 import Awards from './sections/Awards';
 import HomeLogo from './misc/animatedComponents/HomeLogo';
 import CircuitAnimation from './misc/animatedComponents/CircuitAnimation';
-import WaveAnimation from './misc/animatedComponents/WaveAnimation';
 
 const MainContent: React.FC = () => {
     return (

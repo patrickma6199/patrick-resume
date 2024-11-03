@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
                     <MainContent />
                 </ScrollProvider>
             </div>
-            <WaveAnimation />
+            {/* <WaveAnimation /> */}
         </div>
     );
 };

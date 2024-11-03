@@ -12,7 +12,6 @@ import CSSIcon from '../../assets/techStackLogos/css.svg';
 import DockerIcon from '../../assets/techStackLogos/docker.svg';
 import FirebaseIcon from '../../assets/techStackLogos/firebase.svg';
 import JavaIcon from '../../assets/techStackLogos/java.svg';
-import JavaScriptIcon from '../../assets/techStackLogos/js.svg';
 import JQueryIcon from '../../assets/techStackLogos/jquery.svg';
 import MySQLIcon from '../../assets/techStackLogos/mysql.svg';
 import PHPIcon from '../../assets/techStackLogos/php.svg';
@@ -23,6 +22,15 @@ import ApacheIcon from '../../assets/techStackLogos/apache.svg';
 import GradleIcon from '../../assets/techStackLogos/gradle.svg';
 import LinuxIcon from '../../assets/techStackLogos/linux.svg';
 import BootstrapIcon from '../../assets/techStackLogos/bootstrap.svg';
+import MikroORMIcon from '../../assets/techStackLogos/mikro-orm.svg';
+import NodeIcon from '../../assets/techStackLogos/node.svg';
+import YarnIcon from '../../assets/techStackLogos/yarn.svg';
+import NPMIcon from '../../assets/techStackLogos/npm.svg';
+import NestJSIcon from '../../assets/techStackLogos/nestjs.svg';
+import NextJSIcon from '../../assets/techStackLogos/nextjs.svg';
+import PostgresIcon from '../../assets/techStackLogos/postgresql.svg';
+import SentryIcon from '../../assets/techStackLogos/sentry.svg';
+import RedisIcon from '../../assets/techStackLogos/redis.svg';
 import Icon from '../misc/iconWrapper';
 import {useIsMobile} from '../../contexts/MobileContext';
 import Button from '../misc/Button';
@@ -31,6 +39,10 @@ const Projects: React.FC = () => {
     const isMobile = useIsMobile();
 
     const [autoplay, setAutoplay] = useState<boolean>(true);
+
+    const toggleAutoplay = () => {
+        setAutoplay(prevAutoplay => !prevAutoplay);
+    };
 
     const projectCardSettings: Settings = {
         dots: !isMobile,
@@ -50,8 +62,59 @@ const Projects: React.FC = () => {
         <div className="min-w-[90%] flex flex-col justify-center items-between p-4 relative">
             <Slider
                 {...projectCardSettings}
-                key={isMobile ? 'mobile' : 'desktop'}
+                key={`${isMobile} - ${autoplay}`} // To force re-render of this component when settings change
             >
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
+                    <ProjectCard
+                        title="HelpMe System - Ongoing"
+                        dates="Sept 2024 - Present"
+                        description={[
+                            `Student built office hour management system with LLM integration for course aid currently deployed at UBCO for COSC 304, 404, and all first year MATH courses`,
+                            `Utilized Next.js for server-side rendering to improve SEO and reduce time to first paint`,
+                            `Implemented a NestJS API to handle user authentication, course management, office hour queue management, and LLM integration`,
+                            `Developed lightweight, ephemeral chat functionality with Redis Pub/Sub to allow for real-time communication between students and TAs.`,
+                            `Used Redis to cache frequently requested data and leveraged Pub/Sub with Server-Sent Events (SSE) for real-time updates of queue status's.`,
+                        ]}
+                        technologies={[
+                            <Icon src={NextJSIcon} />,
+                            <Icon src={NestJSIcon} />,
+                            <Icon src={TypeScriptIcon} />,
+                            <Icon src={TailwindCSSIcon} />,
+                            <Icon src={DockerIcon} />,
+                            <Icon src={PostgresIcon} />,
+                            <Icon src={RedisIcon} />,
+                            <Icon src={MikroORMIcon} />,
+                            <Icon src={SentryIcon} />,
+                            <Icon src={NodeIcon} />,
+                            <Icon src={YarnIcon} />,
+                        ]}
+                        link="https://coursehelp.ubc.ca"
+                    />
+                </div>
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
+                    <ProjectCard
+                        title="Edu-Val (Capstone Project) - Ongoing"
+                        dates="May 2024 - Present"
+                        description={[
+                            `Capstone project that was adopted by a client to be used as a peer review and evaluation platform for his students at SFU and Northeastern University`,
+                            `Implemented 8 microservices using Node.js and Express.js to handle user authentication, submission persistance, third-party API integration, and more to ensure a scalable and intuitively maintainable codebase`,
+                            `Utilized a MySQL database with MikroORM in Node.js to handle data persistence and retrieval`,
+                            `Integrated a reverse-proxy server with Nginx to handle load balancing, logging, and routing of incoming requests to the appropriate microservice`,
+                            `Wrote extensive documentation for our Capstone client to ensure a smooth transition of the project to their team`,
+                        ]}
+                        technologies={[
+                            <Icon src={ReactIcon} />,
+                            <Icon src={TypeScriptIcon} />,
+                            <Icon src={CSSIcon} />,
+                            <Icon src={DockerIcon} />,
+                            <Icon src={MySQLIcon} />,
+                            <Icon src={MikroORMIcon} />,
+                            <Icon src={NodeIcon} />,
+                            <Icon src={NPMIcon} />,
+                        ]}
+                        warning="For legal reasons, I cannot share the GitHub link for this project"
+                    />
+                </div>
                 <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
                         title="Pondr"
@@ -116,18 +179,15 @@ const Projects: React.FC = () => {
             </Slider>
             <div className="w-full h-20 rounded-full flex justify-around items-center md:mt-20">
                 <Button
-                    onClick={() => {
-                        setAutoplay(false);
-                    }}
+                    onClick={toggleAutoplay}
                     bgColor="bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
-                    icon={<PauseIcon className="text-lg" />}
-                />
-                <Button
-                    onClick={() => {
-                        setAutoplay(true);
-                    }}
-                    bgColor="bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple"
-                    icon={<PlayArrowIcon className="text-lg" />}
+                    icon={
+                        autoplay ? (
+                            <PauseIcon className="text-lg" />
+                        ) : (
+                            <PlayArrowIcon className="text-lg" />
+                        )
+                    }
                 />
             </div>
         </div>
