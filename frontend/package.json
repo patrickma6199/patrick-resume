@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickma6199/patrick-resume.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,7 +14,7 @@
     "tailwind": "postcss src/styles/tailwind.css -o src/styles/index.css",
     "preview": "vite preview",
     "format": "prettier --write ./src/**/*.{ts,tsx,css}",
-    "prepare": "husky"
+    "prepare": "husky ./.."
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
