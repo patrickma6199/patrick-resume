@@ -47,18 +47,19 @@ const AssistantMainContent: React.FC = () => {
         });
     };
 
-    // spacebar
     const handleKeyPress = (event: KeyboardEvent) => {
-        if (event.key === 'Space') {
+        if (event.key === ' ') { // Space key is represented as ' '
+            event.preventDefault(); // Prevent default scrolling
             handleInputStart();
         }
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
-        if (event.key === 'Space') {
+        if (event.key === ' ') { // Space key is represented as ' '
+            event.preventDefault(); // Prevent default scrolling
             handleCompleteMessage();
         }
-    }
+    };
 
     useEffect(() => {
         // Add event listener for keydown
