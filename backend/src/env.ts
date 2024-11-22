@@ -26,17 +26,12 @@ if (!process.env.IS_TESTING) {
  * @summary An exported set of this service's necessary environment variables.
  */
 const requiredEnvVariables = [
-    'STORE_PORT',
     'HOST_NAME',
     'CRT_LOCATION',
     'KEY_LOCATION',
-    'MYSQL_HOST',
-    'MYSQL_DB',
-    'MYSQL_USER',
-    'MYSQL_USER_PW',
-    'STORE_DIR',
-    'STORE_KEY',
-    'IS_PRODUCTION',
+    'TIMEZONE',
+    'OPEN_API',
+    'OPEN_ASSIST_ID',
 ];
 
 for (const variable of requiredEnvVariables) {
@@ -46,15 +41,10 @@ for (const variable of requiredEnvVariables) {
 }
 
 export const {
-    STORE_PORT,
     HOST_NAME,
     CRT_LOCATION,
     KEY_LOCATION,
-    MYSQL_HOST,
-    MYSQL_DB,
-    MYSQL_USER,
-    MYSQL_USER_PW,
-    STORE_DIR,
-    STORE_KEY,
-    IS_PRODUCTION,
+    TIMEZONE,
+    OPEN_API,
+    OPEN_ASSIST_ID,
 } = process.env;

@@ -1,21 +1,12 @@
 import express from 'express';
-import AvatarRouter from './routes/AvatarRouter';
-import SubmissionRouter from './routes/SubmissionRouter';
+import AssistantRouter from './routes/AtlasAssistantRouter';
 import {HOST_NAME} from './env';
+import cors from 'cors';
 
-/**
- * @namespace createApp
- * @description Creates the express app and maps the required
- * routes of this service to the app.
- * @param authHelper The authentication helper object to be used by all routers.
- * @param dbHelper The database helper object to be used by all routers.
- * @returns The express object with all routes mapped.
- */
-export default function createApp(authHelper: any, dbHelper: any) {
+export default function createApp() {
     const app = express();
 
-    const avatar = AvatarRouter.getRouter(authHelper, dbHelper);
-    const submission = SubmissionRouter.getRouter(authHelper, dbHelper);
+    const assistant = AssistantRouter.getRouter();
 
     // Error handling and logging middleware
     app.use((req, res, next) => {
@@ -54,9 +45,10 @@ export default function createApp(authHelper: any, dbHelper: any) {
         }
     });
 
+    app.use(cors());
+
     // Mapping routes defined in ./routes directory
-    app.use('/avatar', avatar);
-    app.use('/submission', submission);
+    app.use('/atlas_assistant', assistant);
 
     return app;
 }

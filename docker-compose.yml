@@ -10,6 +10,9 @@ services:
       CRT_LOCATION: ${NGINX_SSL_DIR}${LOCAL_CERT}
       KEY_LOCATION: ${NGINX_SSL_DIR}${LOCAL_KEY}
       HOST_NAME: ${HOST_NAME}
+      OPEN_API: ${OPEN_API}
+      OPEN_ASSIST_ID: ${OPEN_ASSIST_ID}
+      IS_PRODUCTION: 'true'
     build:
       context: ./backend
       dockerfile: Backend.dockerfile
@@ -29,6 +32,7 @@ services:
       KEY_LOCATION: ${NGINX_SSL_DIR}${LOCAL_KEY}
       HOST_NAME: ${HOST_NAME}
       TZ: ${TIMEZONE}
+      IS_PRODUCTION: 'true'
     build:
       context: ./frontend
       dockerfile: Frontend.dockerfile
@@ -41,18 +45,15 @@ services:
     restart: unless-stopped
     volumes:
       - ./deploy/proxy.conf:/etc/nginx/templates/nginx.conf.template
-      - ${LETS_ENCRYPT_DIR}${DEPLOY_CERT}:${PROXY_SSL_DIR}${DEPLOY_CERT}
-      - ${LETS_ENCRYPT_DIR}${DEPLOY_KEY}:${PROXY_SSL_DIR}${DEPLOY_KEY}
+      - ${LETS_ENCRYPT_DIR}${DEPLOY_CERT}:${NGINX_SSL_DIR}${DEPLOY_CERT}
+      - ${LETS_ENCRYPT_DIR}${DEPLOY_KEY}:${NGINX_SSL_DIR}${DEPLOY_KEY}
     environment:
       NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
-      CRT_LOCATION: ${PROXY_SSL_DIR}${DEPLOY_CERT}
-      KEY_LOCATION: ${PROXY_SSL_DIR}${DEPLOY_KEY}
+      CRT_LOCATION: ${NGINX_SSL_DIR}${DEPLOY_CERT}
+      KEY_LOCATION: ${NGINX_SSL_DIR}${DEPLOY_KEY}
       HOST_NAME: ${HOST_NAME}
-      LOCAL: ${LOCAL}
-      FULL: ${FULL}
-      KEY: ${KEY}
-      DEFAULT: ${DEFAULT}
       TZ: ${TIMEZONE}
+      IS_PRODUCTION: 'true'
     links:
       - portfolio-backend
       - portfolio-frontend

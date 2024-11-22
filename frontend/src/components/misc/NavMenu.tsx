@@ -133,6 +133,25 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
                     }}
                     onClick={() => {
                         if (atHomePage) {
+                            window.location.href = '/assistant';
+                        }
+                        setOpen(false);
+                    }}
+                >
+                    Assistant
+                </Button>
+                <Button
+                    key={3}
+                    sx={{
+                        color: 'white',
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        minWidth: '100%',
+                        display: 'block',
+                        padding: '1rem',
+                    }}
+                    onClick={() => {
+                        if (atHomePage) {
                             window.location.href = '/space';
                         }
                         setOpen(false);
