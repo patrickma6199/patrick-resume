@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SpaceDemoPage from './pages/SpaceDemoPage';
 import ThreeBodyProblemPage from './pages/ThreeBodyProblemPage';
+import AtlasAssistant from './pages/AtlasAssistant';
 
 const App: React.FC = () => {
     useEffect(() => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/space" element={<SpaceDemoPage />} />
                 <Route path="/three_body" element={<ThreeBodyProblemPage />} />
+                <Route path="/assistant" element={<AtlasAssistant />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
         </BrowserRouter>

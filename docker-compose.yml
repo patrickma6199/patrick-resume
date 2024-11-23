@@ -1,20 +1,69 @@
 services:
-    portfolio-frontend:
-      container_name: portfolio-frontend
-      restart: unless-stopped
-      volumes:
-        - ./deploy/frontend.conf:/etc/nginx/templates/nginx.conf.template
-        - ${SSL_DIR}${CERT}:${NGINX_SSL_DIR}${CERT}
-        - ${SSL_DIR}${KEY}:${NGINX_SSL_DIR}${KEY}
-      environment:
-        NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
-        CRT_LOCATION: ${NGINX_SSL_DIR}${CERT}
-        KEY_LOCATION: ${NGINX_SSL_DIR}${KEY}
-        HOST_NAME: ${HOST_NAME}
-        TZ: ${TIMEZONE}
-      build:
-        context: ./
-        dockerfile: ./Deploy.dockerfile
-      ports:
+  portfolio-backend:
+    container_name: portfolio-backend
+    restart: unless-stopped
+    volumes:
+      - ${SSL_DIR}${LOCAL_CERT}:${NGINX_SSL_DIR}${LOCAL_CERT}
+      - ${SSL_DIR}${LOCAL_KEY}:${NGINX_SSL_DIR}${LOCAL_KEY}
+    environment:
+      TZ: ${TIMEZONE}
+      CRT_LOCATION: ${NGINX_SSL_DIR}${LOCAL_CERT}
+      KEY_LOCATION: ${NGINX_SSL_DIR}${LOCAL_KEY}
+      HOST_NAME: ${HOST_NAME}
+      OPEN_API: ${OPEN_API}
+      IS_PRODUCTION: 'true'
+      PASSKEY: ${PASSKEY}
+    build:
+      context: ./backend
+      dockerfile: Backend.dockerfile
+    networks:
+      - portfolio-network
+
+  portfolio-frontend:
+    container_name: portfolio-frontend
+    restart: unless-stopped
+    volumes:
+      - ./deploy/frontend.conf:/etc/nginx/templates/nginx.conf.template
+      - ${SSL_DIR}${LOCAL_CERT}:${NGINX_SSL_DIR}${LOCAL_CERT}
+      - ${SSL_DIR}${LOCAL_KEY}:${NGINX_SSL_DIR}${LOCAL_KEY}
+    environment:
+      NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
+      CRT_LOCATION: ${NGINX_SSL_DIR}${LOCAL_CERT}
+      KEY_LOCATION: ${NGINX_SSL_DIR}${LOCAL_KEY}
+      HOST_NAME: ${HOST_NAME}
+      TZ: ${TIMEZONE}
+      IS_PRODUCTION: 'true'
+    build:
+      context: ./frontend
+      dockerfile: Frontend.dockerfile
+    depends_on:
+      - portfolio-backend
+    networks:
+      - portfolio-network
+
+  portfolio-proxy:
+    image: nginx:latest
+    container_name: portfolio-proxy
+    restart: unless-stopped
+    volumes:
+      - ./deploy/proxy.conf:/etc/nginx/templates/nginx.conf.template
+      - ${LETS_ENCRYPT_DIR}${DEPLOY_CERT}:${NGINX_SSL_DIR}${DEPLOY_CERT}
+      - ${LETS_ENCRYPT_DIR}${DEPLOY_KEY}:${NGINX_SSL_DIR}${DEPLOY_KEY}
+    environment:
+      NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
+      CRT_LOCATION: ${NGINX_SSL_DIR}${DEPLOY_CERT}
+      KEY_LOCATION: ${NGINX_SSL_DIR}${DEPLOY_KEY}
+      HOST_NAME: ${HOST_NAME}
+      TZ: ${TIMEZONE}
+      IS_PRODUCTION: 'true'
+    links:
+      - portfolio-backend
+      - portfolio-frontend
+    ports:
       - ${HTTP_PROXY_PORT}:${HTTP_PROXY_PORT}
       - ${HTTPS_PROXY_PORT}:${HTTPS_PROXY_PORT}
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
