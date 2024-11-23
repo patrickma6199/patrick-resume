@@ -1,6 +1,6 @@
 import express, {Router} from 'express';
 import {Request, Response} from 'express-serve-static-core';
-import {OPEN_API} from '../env';
+import {OPEN_API, PASSKEY} from '../env';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
 import { JSONHelper } from '../utils/JSONHelper';
@@ -24,12 +24,19 @@ export default class AvatarRouter {
 
     static async sendTextToAtlas(req: Request, res: Response) {
         try {
-            const { message } = req.body;
+            const { message, passkey } = req.body;
 
             if (!message || message.length === 0) {
                 return res.status(400).json({
                     status: 'error',
                     message: 'Invalid data provided',
+                });
+            }
+
+            if (passkey != PASSKEY) {
+                return res.status(403).json({
+                    status: 'error',
+                    message: 'Invalid passkey provided',
                 });
             }
 

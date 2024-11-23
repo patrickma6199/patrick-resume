@@ -11,8 +11,8 @@ services:
       KEY_LOCATION: ${NGINX_SSL_DIR}${LOCAL_KEY}
       HOST_NAME: ${HOST_NAME}
       OPEN_API: ${OPEN_API}
-      OPEN_ASSIST_ID: ${OPEN_ASSIST_ID}
       IS_PRODUCTION: 'true'
+      PASSKEY: ${PASSKEY}
     build:
       context: ./backend
       dockerfile: Backend.dockerfile
@@ -36,6 +36,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Frontend.dockerfile
+    depends_on:
+      - portfolio-backend
     networks:
       - portfolio-network
 

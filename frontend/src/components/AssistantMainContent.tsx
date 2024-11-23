@@ -7,8 +7,8 @@ import 'regenerator-runtime/runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const AssistantMainContent: React.FC = () => {
-    const [yourLastMessage, setYourLastMessage] = useState<string>('');
     const [assistantLastMessage, setAssistantLastMessage] = useState<string>('');
+    const [enteredPasskey, setEnteredPasskey] = useState<string>('');
 
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition, isMicrophoneAvailable } = useSpeechRecognition();
 
@@ -40,10 +40,17 @@ const AssistantMainContent: React.FC = () => {
 
     const handleCompleteMessage = () => {
         handleInputEnd(async (spokenText) => {
-            setYourLastMessage(spokenText);
-            const response = await API.sendTextToAtlas(spokenText);
-            setAssistantLastMessage(response.message.content);
-            speak(response.message.content);
+            if (spokenText.length === 0) {
+                return;
+            }
+
+            const response = await API.sendTextToAtlas(enteredPasskey, spokenText);
+            if (!response.success) {
+                alert(response.response.message || 'Unexpected Error Occurred: Failed to send message to Atlas Assistant');
+                return;
+            }
+            setAssistantLastMessage(response.response.message.content);
+            speak(response.response.message.content);
         });
     };
 
@@ -87,6 +94,13 @@ const AssistantMainContent: React.FC = () => {
                             alt="Patrick Ma"
                             className="rounded-full h-60 w-60 m-4 shadow-lg p-2 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple z-20"
                             loading="lazy"
+                        />
+                        <input
+                            type="password"
+                            value={enteredPasskey}
+                            onChange={(e) => setEnteredPasskey(e.target.value)}
+                            placeholder="Enter the Passkey"
+                            className="p-4 bg-gradient-to-bl from-darker-blue via-light-blue to-light-purple rounded-xl shadow-lg z-20"
                         />
                         <p>Listening: {listening ? 'Yes' : 'No'}</p>
                         <div className="flex w-full gap-8 justify-center items-center">

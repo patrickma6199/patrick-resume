@@ -29,9 +29,8 @@ const requiredEnvVariables = [
     'HOST_NAME',
     'CRT_LOCATION',
     'KEY_LOCATION',
-    'TIMEZONE',
     'OPEN_API',
-    'OPEN_ASSIST_ID',
+    'PASSKEY',
 ];
 
 for (const variable of requiredEnvVariables) {
@@ -44,7 +43,6 @@ export const {
     HOST_NAME,
     CRT_LOCATION,
     KEY_LOCATION,
-    TIMEZONE,
     OPEN_API,
-    OPEN_ASSIST_ID,
+    PASSKEY,
 } = process.env;
