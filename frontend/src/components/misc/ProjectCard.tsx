@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from './Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
@@ -7,6 +7,7 @@ import {Options, Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/css/core';
 import {useIsMobile} from '../../contexts/MobileContext';
+import SmoothScrollWrapper from '../../contexts/SmoothScrollWrapper';
 
 type ProjectCardProps = {
     title: string;
@@ -54,13 +55,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <div className="flex flex-col rounded-lg py-2 px-3 box-border w-full h-full gap-4 flex-grow-3 md:pr-28">
                 <p className="text-lg md:text-2xl font-bold">{title}</p>
                 <p className="text-sm md:text-lg">{dates}</p>
-                <ul className="text-xs md:text-sm list-disc pl-2 md:pl-5">
-                    {description.map((desc, index) => (
-                        <li key={index} className="md:py-2">
-                            {desc}
-                        </li>
-                    ))}
-                </ul>
+                <SmoothScrollWrapper>
+                    <ul className="description text-xs md:text-sm list-disc pl-2 md:pl-5 h-72 overflow-y-auto"
+                        onWheel={(e) => e.stopPropagation()}>
+                        {description.map((desc, index) => (
+                            <li key={index} className="md:py-2">
+                                {desc}
+                            </li>
+                        ))}
+                    </ul>
+                </SmoothScrollWrapper>
                 <div className="flex flex-row gap-4 items-center absolute bottom-6 left-6 z-1000">
                     {github && (
                         <Button

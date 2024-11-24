@@ -8,7 +8,7 @@ const AtlasAssistant: React.FC = () => {
     const mainContentRef = React.useRef<HTMLDivElement>(null);
 
     return (
-        <div className="font-mono bg-gradient-to-br from-darker-blue to-light-blue text-white w-full h-screen overflow-x-hidden overflow-y-hidden flex flex-col relative">
+        <div className="font-mono bg-gradient-to-br from-darker-blue to-light-blue text-white w-full min-h-min overflow-x-hidden overflow-y-hidden flex flex-col relative">
             {/* Header Nav Bar */}
             <div className="flex justify-between items-center w-full font-bold h-[6vh] fixed top-0 left-0 bg-transparent z-50">
                 <div
@@ -25,7 +25,7 @@ const AtlasAssistant: React.FC = () => {
             {/* Main Content */}
             <div
                 ref={mainContentRef}
-                className="flex-1 mt-[6vh] overflow-y-auto no-scrollbar"
+                className="flex-1 my-[6vh] overflow-y-auto no-scrollbar"
             >
                 <ScrollProvider parentRef={mainContentRef}>
                     <AssistantMainContent />

@@ -81,9 +81,9 @@ const AssistantMainContent: React.FC = () => {
     }, []);
 
     return (
-        <div className="relative flex flex-col w-full items-center px-0 gap-8 box-border lg:px-40 overflow-x-hidden">
+        <div className="relative flex flex-col w-full h-[] items-center px-0 gap-8 box-border lg:px-40 overflow-x-hidden">
             <div
-                className="w-full h-screen flex flex-col justify-center items-center box-border z-1 gap-10"
+                className="w-full h-full flex flex-col justify-center items-center box-border z-1 gap-10"
             >   
                 {(!browserSupportsSpeechRecognition || !isMicrophoneAvailable) ? (
                     <h1 className="w-[50%]">Sorry, speech recognition is not supported in your browser or your microphone is not enabled.</h1>
