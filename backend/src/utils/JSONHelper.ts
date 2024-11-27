@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+import {fileURLToPath} from 'url';
 
 export class JSONHelper {
     /**
@@ -11,12 +11,13 @@ export class JSONHelper {
      */
     static readJson(filePath: string): any {
         try {
-
             const absolutePath = path.resolve(__dirname, filePath);
             const fileContents = fs.readFileSync(absolutePath, 'utf-8');
             return JSON.parse(fileContents);
         } catch (error: any) {
-            throw new Error(`Failed to read JSON file at ${filePath}: ${error.message}`);
+            throw new Error(
+                `Failed to read JSON file at ${filePath}: ${error.message}`,
+            );
         }
     }
 
@@ -29,9 +30,15 @@ export class JSONHelper {
     static writeJson(filePath: string, data: any): void {
         try {
             const absolutePath = path.resolve(__dirname, filePath);
-            fs.writeFileSync(absolutePath, JSON.stringify(data, null, 4), 'utf-8');
+            fs.writeFileSync(
+                absolutePath,
+                JSON.stringify(data, null, 4),
+                'utf-8',
+            );
         } catch (error: any) {
-            throw new Error(`Failed to write JSON file at ${filePath}: ${error.message}`);
+            throw new Error(
+                `Failed to write JSON file at ${filePath}: ${error.message}`,
+            );
         }
     }
 
@@ -45,7 +52,9 @@ export class JSONHelper {
             const absolutePath = path.resolve(__dirname, filePath);
             return fs.existsSync(absolutePath);
         } catch (error: any) {
-            throw new Error(`Failed to check if JSON file exists at ${filePath}: ${error.message}`);
+            throw new Error(
+                `Failed to check if JSON file exists at ${filePath}: ${error.message}`,
+            );
         }
     }
 }

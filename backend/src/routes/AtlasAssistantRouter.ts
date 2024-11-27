@@ -3,7 +3,7 @@ import {Request, Response} from 'express-serve-static-core';
 import {OPEN_API, PASSKEY} from '../env';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
-import { JSONHelper } from '../utils/JSONHelper';
+import {JSONHelper} from '../utils/JSONHelper';
 import chatHistory from '../persist/atlas_persist.json';
 
 export default class AvatarRouter {
@@ -24,7 +24,7 @@ export default class AvatarRouter {
 
     static async sendTextToAtlas(req: Request, res: Response) {
         try {
-            const { message, passkey } = req.body;
+            const {message, passkey} = req.body;
 
             if (!message || message.length === 0) {
                 return res.status(400).json({
@@ -43,23 +43,33 @@ export default class AvatarRouter {
             // grab chat history
             if (!JSONHelper.jsonFileExists(`../persist/atlas_persist.json`)) {
                 JSONHelper.writeJson(`../persist/atlas_persist.json`, {
-                    model: "gpt-3.5-turbo",
+                    model: 'gpt-3.5-turbo',
                     temperature: 1,
                     messages: [
-                        { role: "system", content: "You are named 'Atlas', and you are my personal home assistant, optimized for interaction through speech recognition and text-to-speech. My requests will include tasks related to coding, photography, software support, music, and other miscellaneous and academic activities. You must always refer to me as 'sir' and keep your responses as concise as you deem conversationally natural so that I don't have to listen to paragraphs of response text. When providing LaTeX expressions, always use double dollar signs (`$$`) to enclose the math expressions for both inline and block-level math." }
-                    ]
+                        {
+                            role: 'system',
+                            content:
+                                "You are named 'Atlas', and you are my personal home assistant, optimized for interaction through speech recognition and text-to-speech. My requests will include tasks related to coding, photography, software support, music, and other miscellaneous and academic activities. You must always refer to me as 'sir' and keep your responses as concise as you deem conversationally natural so that I don't have to listen to paragraphs of response text. When providing LaTeX expressions, always use double dollar signs (`$$`) to enclose the math expressions for both inline and block-level math.",
+                        },
+                    ],
                 });
             }
-            const chatHistory = JSONHelper.readJson(`../persist/atlas_persist.json`);
+            const chatHistory = JSONHelper.readJson(
+                `../persist/atlas_persist.json`,
+            );
 
-            chatHistory.messages.push({role: "user", content: message});
+            chatHistory.messages.push({role: 'user', content: message});
 
-            const response = await axios.post(`https://api.openai.com/v1/chat/completions`, chatHistory, {
-                headers: {
-                    'Authorization': `Bearer ${OPEN_API}`,
-                    'Content-Type': 'application/json',
+            const response = await axios.post(
+                `https://api.openai.com/v1/chat/completions`,
+                chatHistory,
+                {
+                    headers: {
+                        Authorization: `Bearer ${OPEN_API}`,
+                        'Content-Type': 'application/json',
+                    },
                 },
-            });
+            );
 
             if (response.status !== 200) {
                 return res.status(response.status).json({
@@ -69,8 +79,9 @@ export default class AvatarRouter {
             }
 
             const atlasResponse = response.data.choices[0].message || {
-                role: "system",
-                content: "Ignore this message. There was an issue with this one.",
+                role: 'system',
+                content:
+                    'Ignore this message. There was an issue with this one.',
             };
 
             chatHistory.messages.push(atlasResponse);
@@ -81,7 +92,6 @@ export default class AvatarRouter {
                 status: 'success',
                 message: atlasResponse,
             });
-
         } catch (e: any) {
             console.error(e);
             res.status(500).json({
@@ -100,13 +110,14 @@ export default class AvatarRouter {
                 });
             }
 
-            const chatHistory = JSONHelper.readJson(`../persist/atlas_persist.json`);
+            const chatHistory = JSONHelper.readJson(
+                `../persist/atlas_persist.json`,
+            );
 
             res.status(200).json({
                 status: 'success',
                 message: chatHistory.messages,
             });
-
         } catch (e: any) {
             console.error(e);
             res.status(500).json({

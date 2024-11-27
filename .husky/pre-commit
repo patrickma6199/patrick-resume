@@ -2,4 +2,6 @@ cd ./frontend
 yarn lint-staged
 
 cd ../backend
-yarn format
+yarn lint-staged
+
+git add .
