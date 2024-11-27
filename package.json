@@ -6,9 +6,11 @@
   "author": "patrickma6199 <patrickma6199@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "concurrently -n \"frontend,backend\" \"cd frontend && npm run dev\" \"docker-compose up -d\""
   },
-  "dependencies": {
+  "devDependencies": {
+    "concurrently": "^9.1.0",
     "husky": "^9.1.7"
   },
   "workspaces": [

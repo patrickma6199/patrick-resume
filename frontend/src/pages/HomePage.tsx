@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
     return (
         <div className="font-mono bg-gradient-to-br from-darker-blue to-light-blue text-white w-full min-h-min md:h-[310vh] overflow-x-hidden overflow-y-hidden flex flex-col relative">
             {/* Header Nav Bar */}
-            <div className="flex justify-between items-center w-full font-bold h-[6vh] fixed top-0 left-0 z-10 bg-transparent">
+            <div className="flex justify-between items-center w-full font-bold h-[6vh] fixed top-0 left-0 z-50 bg-transparent">
                 <div
                     className="h-full flex flex-row text-white text-lg py-1.5 px-4 m-2 gap-4 items-center rounded-md group hover:shadow-lg cursor-pointer box-border"
                     onClick={() => {

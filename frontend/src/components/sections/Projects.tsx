@@ -69,7 +69,7 @@ const Projects: React.FC = () => {
                         title="HelpMe System - Ongoing"
                         dates="Sept 2024 - Present"
                         description={[
-                            `Student built office hour management system with LLM integration for course aid currently deployed at UBCO for COSC 304, 404, and all first year MATH courses`,
+                            `Student built office hour management system with LLM integration for course aid currently deployed at Okanagan College and UBCO for COSC 304, 404, and all first year MATH courses`,
                             `Utilized Next.js for server-side rendering to improve SEO and reduce time to first paint`,
                             `Implemented a NestJS API to handle user authentication, course management, office hour queue management, and LLM integration`,
                             `Developed lightweight, ephemeral chat functionality with Redis Pub/Sub to allow for real-time communication between students and TAs.`,
@@ -100,7 +100,8 @@ const Projects: React.FC = () => {
                             `Implemented 8 microservices using Node.js and Express.js to handle user authentication, submission persistance, third-party API integration, and more to ensure a scalable and intuitively maintainable codebase`,
                             `Utilized a MySQL database with MikroORM in Node.js to handle data persistence and retrieval`,
                             `Integrated a reverse-proxy server with Nginx to handle load balancing, logging, and routing of incoming requests to the appropriate microservice`,
-                            `Wrote extensive documentation for our Capstone client to ensure a smooth transition of the project to their team`,
+                            `Wrote extensive documentation for our Capstone client to ensure maintainability.`,
+                            `Hired by the client to continue development of the project post-handoff, and to provide support and maintenance upon deployment`,
                         ]}
                         technologies={[
                             <Icon src={ReactIcon} />,
