@@ -1,20 +1,21 @@
-# Patrick's Portfolio React App
+# Patrick's Portfolio React App w/ Express.js Backend for Assistant
 
 ## 1. Major Dependencies
+
 - React with Vite
 - Typescript
 - Eslint and Prettier
 - Framer Motion
 - Three.js (Fiber) with Drei
 - MUI Component Library
+- Express.js
 
 ## 2. Commands
 
 ```bash
 yarn            # Equivalent to 'yarn i' or 'yarn install'
-yarn build      # Builds the production ready build
+yarn prepare    # prepares pre-commit hooks for development
 yarn dev        # For hot-reloading development session
-yarn format     # For Prettier formatting
 ```
 
 ## 3. Certificate Set-up
