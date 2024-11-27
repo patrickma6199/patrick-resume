@@ -13,8 +13,7 @@
         "lint": "eslint .",
         "tailwind": "postcss src/styles/tailwind.css -o src/styles/index.css",
         "preview": "vite preview",
-        "format": "prettier --write ./src/**/*.{ts,tsx,css}",
-        "prepare": "husky ./.."
+        "format": "prettier --write ./src/**/*.{ts,tsx,css}"
     },
     "dependencies": {
         "@emotion/react": "^11.13.3",
@@ -66,7 +65,6 @@
         "globals": "^15.9.0",
         "gltf-pipeline": "^4.1.0",
         "gltfjsx": "^6.5.2",
-        "husky": "^9.1.6",
         "lint-staged": "^15.2.10",
         "postcss": "^8.4.47",
         "prettier": "^3.3.3",
