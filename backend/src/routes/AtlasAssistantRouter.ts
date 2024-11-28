@@ -4,9 +4,11 @@ import {OPEN_API, PASSKEY} from '../env';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
 import {JSONHelper} from '../utils/JSONHelper';
+
+// So that tsc includes this file in the build
 import chatHistory from '../persist/atlas_persist.json';
 
-export default class AvatarRouter {
+export default class AtlasAssistantRouter {
     static router: Router | null = null;
 
     static getRouter(): Router {
@@ -43,13 +45,13 @@ export default class AvatarRouter {
             // grab chat history
             if (!JSONHelper.jsonFileExists(`../persist/atlas_persist.json`)) {
                 JSONHelper.writeJson(`../persist/atlas_persist.json`, {
-                    model: 'gpt-3.5-turbo',
-                    temperature: 1,
+                    model: 'gpt-4o-mini',
+                    temperature: 0.7,
                     messages: [
                         {
                             role: 'system',
                             content:
-                                "You are named 'Atlas', and you are my personal home assistant, optimized for interaction through speech recognition and text-to-speech. My requests will include tasks related to coding, photography, software support, music, and other miscellaneous and academic activities. You must always refer to me as 'sir' and keep your responses as concise as you deem conversationally natural so that I don't have to listen to paragraphs of response text. When providing LaTeX expressions, always use double dollar signs (`$$`) to enclose the math expressions for both inline and block-level math.",
+                                "You are named 'Atlas', and you are my personal home assistant, optimized for interaction through speech recognition and text-to-speech. Thus, you must speak conversationally and respond with wit from time to time. My requests will stem from tasks related to coding, photography, software support, music, and other miscellaneous activities. You must always refer to me as 'sir' and keep your responses as concise as you deem conversationally natural so that I don't have to listen to paragraphs of response text.",
                         },
                     ],
                 });
