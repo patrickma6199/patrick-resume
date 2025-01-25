@@ -18,11 +18,18 @@ const scroll = () => {
     }
 };
 
+enum Page {
+    HOME = 'home',
+    SPACE = 'space',
+    THREE_BODY = 'three_body',
+    ASSISTANT = 'assistant',
+}
+
 type NavMenuProps = {
-    atHomePage: boolean;
+    page: Page;
 };
 
-const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
+const NavMenu: React.FC<NavMenuProps> = ({page}) => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -70,7 +77,7 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
                         padding: '1rem',
                     }}
                     onClick={() => {
-                        if (atHomePage) {
+                        if (page === Page.HOME) {
                             const element = document.getElementById('landing');
                             if (element) {
                                 element.scrollIntoView({
@@ -98,7 +105,7 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
                             padding: '1rem',
                         }}
                         onClick={() => {
-                            if (atHomePage) {
+                            if (page === Page.HOME) {
                                 const element = document.getElementById(
                                     name.toLowerCase(),
                                 );
@@ -132,7 +139,7 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
                         padding: '1rem',
                     }}
                     onClick={() => {
-                        if (atHomePage) {
+                        if (page !== Page.ASSISTANT) {
                             window.location.href = '/assistant';
                         }
                         setOpen(false);
@@ -151,7 +158,7 @@ const NavMenu: React.FC<NavMenuProps> = ({atHomePage}) => {
                         padding: '1rem',
                     }}
                     onClick={() => {
-                        if (atHomePage) {
+                        if (page !== Page.SPACE) {
                             window.location.href = '/space';
                         }
                         setOpen(false);

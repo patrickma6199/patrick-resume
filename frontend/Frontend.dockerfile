@@ -1,9 +1,8 @@
 #Stage 1
-FROM node:20-alpine3.20 AS builder
+FROM node:current-alpine3.20 AS builder
 WORKDIR /app
 COPY package.json .
 RUN yarn install
-RUN yarn add typescript
 COPY . .
 RUN yarn build
 
