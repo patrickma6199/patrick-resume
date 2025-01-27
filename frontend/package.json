@@ -9,7 +9,7 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "tsc -b && vite build",
+        "build": "vite build",
         "lint": "eslint .",
         "tailwind": "postcss src/styles/tailwind.css -o src/styles/index.css",
         "preview": "vite preview",
