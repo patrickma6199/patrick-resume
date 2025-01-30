@@ -1,5 +1,5 @@
 import React from 'react';
-import NavMenu from '../components/misc/NavMenu';
+import NavMenu, {Page} from '../components/misc/NavMenu';
 import CodeIcon from '@mui/icons-material/Code';
 import MainContent from '../components/MainContent';
 import {ScrollProvider} from '../contexts/ScrollContext';
@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
                 >
                     <CodeIcon className="text-lighter-blue" />
                 </div>
-                <NavMenu atHomePage={true} />
+                <NavMenu page={Page.HOME} />
             </div>
 
             {/* Main Content */}

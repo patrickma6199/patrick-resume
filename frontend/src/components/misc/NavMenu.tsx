@@ -18,7 +18,7 @@ const scroll = () => {
     }
 };
 
-enum Page {
+export enum Page {
     HOME = 'home',
     SPACE = 'space',
     THREE_BODY = 'three_body',

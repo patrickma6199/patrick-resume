@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import CodeIcon from '@mui/icons-material/Code';
-import NavMenu from '../components/misc/NavMenu';
+import NavMenu, {Page} from '../components/misc/NavMenu';
 import {Canvas, useLoader} from '@react-three/fiber';
 import {
     AdaptiveDpr,
@@ -162,7 +162,7 @@ const ThreeBodyProblemPage: React.FC = () => {
                 >
                     <CodeIcon className="text-lighter-blue" />
                 </div>
-                <NavMenu atHomePage={false} />
+                <NavMenu page={Page.THREE_BODY} />
             </div>
 
             {/* Three.js Animation */}

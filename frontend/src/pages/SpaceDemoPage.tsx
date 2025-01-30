@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
 import CodeIcon from '@mui/icons-material/Code';
-import NavMenu from '../components/misc/NavMenu';
+import NavMenu, {Page} from '../components/misc/NavMenu';
 import {Canvas, useFrame, useLoader} from '@react-three/fiber';
 import {
     AdaptiveDpr,
@@ -325,7 +325,7 @@ const SpaceDemoPage: React.FC = () => {
                 >
                     <CodeIcon className="text-lighter-blue" />
                 </div>
-                <NavMenu atHomePage={false} />
+                <NavMenu page={Page.SPACE} />
             </div>
 
             {/* Three.js Animation */}

@@ -1,8 +1,8 @@
 import React from 'react';
-import NavMenu from '../components/misc/NavMenu';
+import NavMenu, {Page} from '../components/misc/NavMenu';
 import CodeIcon from '@mui/icons-material/Code';
 import AssistantMainContent from '../components/AssistantMainContent';
-import { ScrollProvider } from '../contexts/ScrollContext';
+import {ScrollProvider} from '../contexts/ScrollContext';
 
 const AtlasAssistant: React.FC = () => {
     const mainContentRef = React.useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ const AtlasAssistant: React.FC = () => {
                 >
                     <CodeIcon className="text-lighter-blue" />
                 </div>
-                <NavMenu atHomePage={false} />
+                <NavMenu page={Page.ASSISTANT} />
             </div>
 
             {/* Main Content */}
