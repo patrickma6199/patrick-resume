@@ -1,8 +1,8 @@
 #Stage 1
-FROM node:current-alpine3.20 AS builder
+FROM node:23-alpine3.20 AS builder
 WORKDIR /app
 COPY package.json .
-RUN yarn install
+RUN yarn
 COPY . .
 RUN yarn build
 
