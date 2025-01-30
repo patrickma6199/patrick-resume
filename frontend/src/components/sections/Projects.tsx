@@ -66,6 +66,26 @@ const Projects: React.FC = () => {
             >
                 <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
+                        title="Atlas Portfolio"
+                        dates="Oct 2024 - Present"
+                        description={[
+                            `A frontend - focused project to act as an alternative platform to highlight my academic and occupational achievements`,
+                            `Utilized React with Tailwind, Framer Motion, and MaterialUI to create a unique user experience right from the landing page and to gain experience in solving frontend-heavy problems`,
+                            `Deployed using DigitalOcean Droplets running on Ubuntu Server distro`,
+                        ]}
+                        technologies={[
+                            <Icon src={ReactIcon} />,
+                            <Icon src={TailwindCSSIcon} />,
+                            <Icon src={TypeScriptIcon} />,
+                            <Icon src={DockerIcon} />,
+                            <Icon src={NodeIcon} />,
+                            <Icon src={YarnIcon} />,
+                            // framer-motion, three.js, material-ui
+                        ]}
+                    />
+                </div>
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
+                    <ProjectCard
                         title="HelpMe System - Ongoing"
                         dates="Sept 2024 - Present"
                         description={[
