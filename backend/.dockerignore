@@ -3,3 +3,4 @@
 **/coverage
 **/tests
 ./Dockerfile
+yarn.lock
