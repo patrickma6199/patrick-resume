@@ -114,7 +114,7 @@ const Projects: React.FC = () => {
                 <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
                         title="Edu-Val (Capstone Project) - Ongoing"
-                        dates="May 2024 - Present"
+                        dates="May 2024 - Present | Learnification Technologies"
                         description={[
                             `Capstone project that was adopted by a client to be used as a peer review and evaluation platform for his students at SFU and Northeastern University`,
                             `Implemented 8 microservices using Node.js and Express.js to handle user authentication, submission persistance, third-party API integration, and more to ensure a scalable and intuitively maintainable codebase`,
