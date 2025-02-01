@@ -31,6 +31,8 @@ import NextJSIcon from '../../assets/techStackLogos/nextjs.svg';
 import PostgresIcon from '../../assets/techStackLogos/postgresql.svg';
 import SentryIcon from '../../assets/techStackLogos/sentry.svg';
 import RedisIcon from '../../assets/techStackLogos/redis.svg';
+import ThreeJSIcon from '../../assets/techStackLogos/threejs.svg';
+import FramerMotionIcon from '../../assets/techStackLogos/framer-motion.svg';
 import Icon from '../misc/iconWrapper';
 import {useIsMobile} from '../../contexts/MobileContext';
 import Button from '../misc/Button';
@@ -70,8 +72,10 @@ const Projects: React.FC = () => {
                         dates="Oct 2024 - Present"
                         description={[
                             `A frontend - focused project to act as an alternative platform to highlight my academic and occupational achievements`,
-                            `Utilized React with Tailwind, Framer Motion, and MaterialUI to create a unique user experience right from the landing page and to gain experience in solving frontend-heavy problems`,
-                            `Deployed using DigitalOcean Droplets running on Ubuntu Server distro`,
+                            `Utilized React with Tailwind, Framer Motion, and MaterialUI to create a unique user experience right from the landing page and to learn more about solving UI/UX-focused tasks`,
+                            `Constructed a custom 3D model of the solar system proportional in spin and size using Three.js as an introductory project to 3D rendering`,
+                            `Deployed using DigitalOcean Droplets running on Ubuntu Server distro with Github Webhooks for CI/CD`,
+                            `Plan to construct a Three.JS model to showcase my photography in a manner that is interactive and exploratory`,
                         ]}
                         technologies={[
                             <Icon src={ReactIcon} />,
@@ -80,8 +84,12 @@ const Projects: React.FC = () => {
                             <Icon src={DockerIcon} />,
                             <Icon src={NodeIcon} />,
                             <Icon src={YarnIcon} />,
-                            // framer-motion, three.js, material-ui
+                            <Icon src={LinuxIcon} />,
+                            <Icon src={ThreeJSIcon} />,
+                            <Icon src={FramerMotionIcon} />,
                         ]}
+                        github="https://github.com/patrickma6199/patrick-resume/"
+                        link="https://atlas.patrickweb.net"
                     />
                 </div>
                 <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
