@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SpaceDemoPage from './pages/SpaceDemoPage';
-import ThreeBodyProblemPage from './pages/ThreeBodyProblemPage';
+import ThreeBodyProblemPage from './pages/ZinePage';
 import AtlasAssistant from './pages/AtlasAssistant';
 
 const App: React.FC = () => {

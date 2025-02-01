@@ -51,15 +51,6 @@ const RockyFloor: React.FC = () => {
                 <planeGeometry args={[100, 100, 256, 256]} />
                 <meshStandardMaterial {...textures} displacementScale={2} />
             </mesh>
-
-            {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2} position-y={1}>
-                <planeGeometry args={[100, 100, 256, 256]} />
-                <meshStandardMaterial
-                    normalMap={textures.normalMap}
-                    aoMap={textures.aoMap}
-                    displacementMap={textures.displacementMap}
-                    wireframe color='white' />
-            </mesh> */}
         </>
     );
 };
@@ -162,7 +153,7 @@ const ThreeBodyProblemPage: React.FC = () => {
                 >
                     <CodeIcon className="text-lighter-blue" />
                 </div>
-                <NavMenu page={Page.THREE_BODY} />
+                <NavMenu page={Page.ZINE} />
             </div>
 
             {/* Three.js Animation */}
