@@ -31,6 +31,8 @@ import NextJSIcon from '../../assets/techStackLogos/nextjs.svg';
 import PostgresIcon from '../../assets/techStackLogos/postgresql.svg';
 import SentryIcon from '../../assets/techStackLogos/sentry.svg';
 import RedisIcon from '../../assets/techStackLogos/redis.svg';
+import ThreeJSIcon from '../../assets/techStackLogos/threejs.svg';
+import FramerMotionIcon from '../../assets/techStackLogos/framer-motion.svg';
 import Icon from '../misc/iconWrapper';
 import {useIsMobile} from '../../contexts/MobileContext';
 import Button from '../misc/Button';
@@ -66,6 +68,32 @@ const Projects: React.FC = () => {
             >
                 <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
+                        title="Atlas Portfolio"
+                        dates="Oct 2024 - Present"
+                        description={[
+                            `A frontend - focused project to act as an alternative platform to highlight my academic and occupational achievements`,
+                            `Utilized React with Tailwind, Framer Motion, and MaterialUI to create a unique user experience right from the landing page and to learn more about solving UI/UX-focused tasks`,
+                            `Constructed a custom 3D model of the solar system proportional in spin and size using Three.js as an introductory project to 3D rendering`,
+                            `Deployed using DigitalOcean Droplets running on Ubuntu Server distro with Github Webhooks for CI/CD`,
+                            `Plan to construct a Three.JS model to showcase my photography in a manner that is interactive and exploratory`,
+                        ]}
+                        technologies={[
+                            <Icon src={ReactIcon} />,
+                            <Icon src={TailwindCSSIcon} />,
+                            <Icon src={TypeScriptIcon} />,
+                            <Icon src={DockerIcon} />,
+                            <Icon src={NodeIcon} />,
+                            <Icon src={YarnIcon} />,
+                            <Icon src={LinuxIcon} />,
+                            <Icon src={ThreeJSIcon} />,
+                            <Icon src={FramerMotionIcon} />,
+                        ]}
+                        github="https://github.com/patrickma6199/patrick-resume/"
+                        link="https://atlas.patrickweb.net"
+                    />
+                </div>
+                <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
+                    <ProjectCard
                         title="HelpMe System - Ongoing"
                         dates="Sept 2024 - Present"
                         description={[
@@ -94,7 +122,7 @@ const Projects: React.FC = () => {
                 <div className="box-border min-h-min min-w-[100%] flex justify-center items-center">
                     <ProjectCard
                         title="Edu-Val (Capstone Project) - Ongoing"
-                        dates="May 2024 - Present"
+                        dates="May 2024 - Present | Learnification Technologies"
                         description={[
                             `Capstone project that was adopted by a client to be used as a peer review and evaluation platform for his students at SFU and Northeastern University`,
                             `Implemented 8 microservices using Node.js and Express.js to handle user authentication, submission persistance, third-party API integration, and more to ensure a scalable and intuitively maintainable codebase`,

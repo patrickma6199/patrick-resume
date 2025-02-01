@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Button from './Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
@@ -56,8 +56,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 <p className="text-lg md:text-2xl font-bold">{title}</p>
                 <p className="text-sm md:text-lg">{dates}</p>
                 <SmoothScrollWrapper>
-                    <ul className="description text-xs md:text-sm list-disc pl-2 md:pl-5 h-72 overflow-y-auto"
-                        onWheel={(e) => e.stopPropagation()}>
+                    <ul
+                        className="description text-xs md:text-sm list-disc pl-2 md:pl-5 h-72 overflow-y-auto md:overflow-y-hidden"
+                        onWheel={e => e.stopPropagation()}
+                    >
                         {description.map((desc, index) => (
                             <li key={index} className="md:py-2">
                                 {desc}
