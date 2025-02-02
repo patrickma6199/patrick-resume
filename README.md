@@ -18,7 +18,39 @@ yarn prepare    # prepares pre-commit hooks for development
 yarn dev        # For hot-reloading development session
 ```
 
-## 3. Certificate Set-up
+## 3. Environment Variables
+
+```dotenv
+# For proxy configuration
+SSL_DIR=./deploy/ssl/
+NGINX_SSL_DIR=/etc/nginx/ssl/
+LETS_ENCRYPT_DIR=./deploy/ssl/
+LOCAL_KEY=localhost.key
+LOCAL_CERT=localhost.crt
+DEPLOY_KEY=localhost.key
+DEPLOY_CERT=localhost.crt
+PRIVATE_HOST_NAME=localhost                         # Should be replaced with private ip address
+PRIVATE_CRT_LOCATION=./deploy/ssl/localhost.crt
+PRIVATE_KEY_LOCATION=./deploy/ssl/localhost.key
+
+
+WEB_HOOK_DIR=./deploy/webHooks/
+WEB_HOOK_SECRET=...                                 # Github Webhook Secret for CD
+
+HTTP_PROXY_PORT=80
+HTTPS_PROXY_PORT=443
+
+TIMEZONE=America/Los_Angeles
+
+OPEN_API=...
+OPEN_ASSIST_ID=...
+
+HOST_NAME=localhost                                 # Set to public domain name
+
+PASSKEY=opensesame
+```
+
+## 4. Certificate Set-up
 
 ### a. Generating Unsigned Certificates
 
@@ -51,12 +83,12 @@ certonly - This option tells certbot to obtain a certificate but not to install 
 sudo certbot certonly --manual --preferred-challenges=dns --email <Your Email> --server <https://acme-v02.api.letsencrypt.org/directory> -d <The Deployed Domain/Subdomain> -d '*.<The Deployed Domain/Subdomain>'
 ```
 
-## 3. Project Build Step
+## 5. Project Build Step
 
 ```bash
 (sudo) docker-compose up -d --build
 ```
 
-## 4. View Page
+## 6. View Page
 
 Head to ```localhost``` or ```<finalized domain>``` and check out the deployed version of the site!
