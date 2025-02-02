@@ -30,8 +30,6 @@ LOCAL_CERT=localhost.crt
 DEPLOY_KEY=localhost.key
 DEPLOY_CERT=localhost.crt
 PRIVATE_HOST_NAME=localhost                         # Should be replaced with private ip address
-PRIVATE_CRT_LOCATION=./deploy/ssl/localhost.crt
-PRIVATE_KEY_LOCATION=./deploy/ssl/localhost.key
 
 
 WEB_HOOK_DIR=./deploy/webHooks/

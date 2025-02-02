@@ -57,8 +57,8 @@ services:
       TZ: ${TIMEZONE}
       IS_PRODUCTION: 'true'
       PRIVATE_HOST_NAME: ${PRIVATE_HOST_NAME}
-      PRIVATE_CRT_LOCATION: ${PRIVATE_CRT_LOCATION}
-      PRIVATE_KEY_LOCATION: ${PRIVATE_KEY_LOCATION}
+      PRIVATE_CRT_LOCATION: ${NGINX_SSL_DIR}${LOCAL_CERT}
+      PRIVATE_KEY_LOCATION: ${NGINX_SSL_DIR}${LOCAL_KEY}
     links:
       - portfolio-backend
       - portfolio-frontend
