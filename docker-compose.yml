@@ -56,6 +56,9 @@ services:
       HOST_NAME: ${HOST_NAME}
       TZ: ${TIMEZONE}
       IS_PRODUCTION: 'true'
+      PRIVATE_HOST_NAME: ${PRIVATE_HOST_NAME}
+      PRIVATE_CRT_LOCATION: ${PRIVATE_CRT_LOCATION}
+      PRIVATE_KEY_LOCATION: ${PRIVATE_KEY_LOCATION}
     links:
       - portfolio-backend
       - portfolio-frontend
