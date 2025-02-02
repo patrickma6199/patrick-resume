@@ -49,6 +49,8 @@ services:
       - ./deploy/proxy.conf:/etc/nginx/templates/nginx.conf.template
       - ${LETS_ENCRYPT_DIR}${DEPLOY_CERT}:${NGINX_SSL_DIR}${DEPLOY_CERT}
       - ${LETS_ENCRYPT_DIR}${DEPLOY_KEY}:${NGINX_SSL_DIR}${DEPLOY_KEY}
+      - ${SSL_DIR}${LOCAL_CERT}:${NGINX_SSL_DIR}${LOCAL_CERT}
+      - ${SSL_DIR}${LOCAL_KEY}:${NGINX_SSL_DIR}${LOCAL_KEY}
     environment:
       NGINX_ENVSUBST_OUTPUT_DIR: /etc/nginx
       CRT_LOCATION: ${NGINX_SSL_DIR}${DEPLOY_CERT}
