@@ -10,7 +10,9 @@ import SpeechRecognition, {
 
 const AssistantMainContent: React.FC = () => {
   const [assistantLastMessage, setAssistantLastMessage] = useState<string>('');
+  const [models, setModels] = useState<string[]>([]);
   const [enteredPasskey, setEnteredPasskey] = useState<string>('');
+  const [selectedModel, setSelectedModel] = useState<string>('gpt-4o-mini');
 
   const {
     transcript,
@@ -54,7 +56,11 @@ const AssistantMainContent: React.FC = () => {
         return;
       }
 
-      const response = await API.sendTextToAtlas(enteredPasskey, spokenText);
+      const response = await API.atlas.send(
+        enteredPasskey,
+        spokenText,
+        selectedModel,
+      );
       if (!response.success) {
         alert(
           response.response.message ||
@@ -95,6 +101,22 @@ const AssistantMainContent: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    async function fetchModels() {
+      const response = await API.atlas.getModels(enteredPasskey);
+      if (!response.success) {
+        alert(
+          response.response.message ||
+            'Unexpected Error Occurred: Failed to get available models for Atlas Assistant',
+        );
+        return;
+      }
+
+      setModels(response.response.message);
+    }
+    fetchModels();
+  }, [setModels]);
+
   return (
     <div className="relative flex flex-col w-full h-[] items-center px-0 gap-8 box-border lg:px-40 overflow-x-hidden">
       <div className="w-full h-full flex flex-col justify-center items-center box-border z-1 gap-10">
@@ -108,7 +130,7 @@ const AssistantMainContent: React.FC = () => {
             <motion.img
               src={AtlasAvatar}
               alt="Patrick Ma"
-              className="rounded-full h-60 w-60 m-4 shadow-lg p-2 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple z-20"
+              className="rounded-full h-60 w-60 m-4 shadow-lg p-2 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple z-20 gap"
               loading="lazy"
             />
             <input
@@ -118,6 +140,17 @@ const AssistantMainContent: React.FC = () => {
               placeholder="Enter the Passkey"
               className="p-4 bg-gradient-to-bl from-darker-blue via-light-blue to-light-purple rounded-xl shadow-lg z-20"
             />
+            <select
+              value={selectedModel}
+              onChange={e => setSelectedModel(e.target.value)}
+              className="p-4 bg-gradient-to-bl from-darker-blue via-light-blue to-light-purple rounded-xl shadow-lg z-20"
+            >
+              {models.map(option => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
             <p>Listening: {listening ? 'Yes' : 'No'}</p>
             <div className="flex w-full gap-8 justify-center items-center">
               <SpeechBox user={true} message={transcript} />

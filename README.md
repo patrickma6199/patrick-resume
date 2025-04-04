@@ -46,7 +46,7 @@ OPEN_ASSIST_ID=...
 HOST_NAME=localhost                                 # Set to public domain name
 
 PASSKEY=opensesame                                  # The passkey used to secure the AI Assistant
-PRIVATE_LMSTUDIO_ADDRESS                            # The private network address you are using to run a local instance of LM Studio
+PRIVATE_LMSTUDIO_ADDRESS=http://192.168.0.1         # The private network address you are using to run a local instance of LM Studio
 ```
 
 ## 4. Certificate Set-up
