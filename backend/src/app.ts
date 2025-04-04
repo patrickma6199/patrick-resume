@@ -1,6 +1,6 @@
 import express from 'express';
 import AssistantRouter from './routes/AtlasAssistantRouter';
-import {HOST_NAME} from './env';
+import {HOST_NAME, PASSKEY} from './env';
 import cors from 'cors';
 
 export default function createApp() {
@@ -32,6 +32,15 @@ export default function createApp() {
             }
 
             return res.sendStatus(403);
+        }
+
+        // Always require passkey defined in body
+        const { passkey } = req.body;
+        if (passkey != PASSKEY) {
+            return res.status(403).json({
+                status: 'error',
+                message: 'Invalid passkey provided',
+            });
         }
 
         try {

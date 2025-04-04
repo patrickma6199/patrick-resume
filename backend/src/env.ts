@@ -31,6 +31,7 @@ const requiredEnvVariables = [
     'KEY_LOCATION',
     'OPEN_API',
     'PASSKEY',
+    'PRIVATE_LMSTUDIO_ADDRESS',
 ];
 
 for (const variable of requiredEnvVariables) {
@@ -39,5 +40,5 @@ for (const variable of requiredEnvVariables) {
     }
 }
 
-export const {HOST_NAME, CRT_LOCATION, KEY_LOCATION, OPEN_API, PASSKEY} =
+export const {HOST_NAME, CRT_LOCATION, KEY_LOCATION, OPEN_API, PASSKEY, PRIVATE_LMSTUDIO_ADDRESS} =
     process.env;
