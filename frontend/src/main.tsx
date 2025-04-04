@@ -7,11 +7,11 @@ import SmoothScrollWrapper from './contexts/SmoothScrollWrapper.tsx';
 import {MobileProvider} from './contexts/MobileContext.tsx';
 
 createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-        <MobileProvider>
-            <SmoothScrollWrapper>
-                <App />
-            </SmoothScrollWrapper>
-        </MobileProvider>
-    </StrictMode>,
+  <StrictMode>
+    <MobileProvider>
+      <SmoothScrollWrapper>
+        <App />
+      </SmoothScrollWrapper>
+    </MobileProvider>
+  </StrictMode>,
 );

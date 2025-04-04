@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prepare": "husky",
+    "format": "concurrently -n \"frontend,backend\" \"cd frontend && yarn format\" \"cd backend && yarn format\"",
     "dev": "concurrently -n \"frontend,backend\" \"cd frontend && npm run dev\" \"docker-compose up -d\""
   },
   "devDependencies": {
