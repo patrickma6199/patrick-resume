@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: atlas.patrickweb.net
+Sitemap: https://atlas.patrickweb.net/sitemap.xml

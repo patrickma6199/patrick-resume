@@ -51,10 +51,9 @@ const Profile: React.FC = () => {
                     speed={30}
                 />
                 <p className="text-md md:text-lg px-4 py-2 max-w-[100vw] md:max-w-[40vw]">
-                    On the search for Internship and Junior Roles in
-                    Full-Stack/Backend Web Development, Machine Learning and
-                    Database Management. Open to any technical opportunities
-                    with a love of learning how systems operate!
+                    Comp. Sci. & Data Science Student and Teaching Assistant at
+                    The University of British Columbia | Software Development,
+                    Machine Learning and Development Operations
                 </p>
                 <p className="text-xs md:text-sm px-4 py-2 max-w-[100vw] md:max-w-[40vw]">
                     4rd Year Undergraduate Student (BSc.) and Teaching Assistant{' '}
@@ -176,10 +175,9 @@ const Profile: React.FC = () => {
                     speed={30}
                 />
                 <p className="text-lg px-4 py-2 max-w-[40vw]">
-                    On the search for Internship and Junior Roles in
-                    Full-Stack/Backend Web Development, Machine Learning and
-                    Database Management. Open to any technical opportunities
-                    with a love of learning how systems operate!
+                    Comp. Sci. & Data Science Student and Teaching Assistant at
+                    The University of British Columbia | Software Development,
+                    Machine Learning and Development Operations
                 </p>
                 <p className="text-sm px-4 py-2 max-w-[40vw]">
                     4rd Year Undergraduate Student (BSc.) and Teaching Assistant{' '}
