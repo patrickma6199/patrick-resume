@@ -8,36 +8,34 @@ import path from 'path';
  * to see if the environment is production (deployed on docker) or development.
  */
 if (!process.env.IS_TESTING) {
-    dotenv.config();
-    const environment = process.env.IS_PRODUCTION
-        ? 'production'
-        : 'development';
-    if (environment !== 'production') {
-        const result = dotenv.config({
-            path: path.resolve(__dirname, '../../.env'),
-        });
-        if (result.error) {
-            throw result.error;
-        }
+  dotenv.config();
+  const environment = process.env.IS_PRODUCTION ? 'production' : 'development';
+  if (environment !== 'production') {
+    const result = dotenv.config({
+      path: path.resolve(__dirname, '../../.env'),
+    });
+    if (result.error) {
+      throw result.error;
     }
+  }
 }
 
 /**
  * @summary An exported set of this service's necessary environment variables.
  */
 const requiredEnvVariables = [
-    'HOST_NAME',
-    'CRT_LOCATION',
-    'KEY_LOCATION',
-    'OPEN_API',
-    'PASSKEY',
+  'HOST_NAME',
+  'CRT_LOCATION',
+  'KEY_LOCATION',
+  'OPEN_API',
+  'PASSKEY',
 ];
 
 for (const variable of requiredEnvVariables) {
-    if (!process.env[variable]) {
-        console.error(`Environment variable ${variable} is undefined.`);
-    }
+  if (!process.env[variable]) {
+    console.error(`Environment variable ${variable} is undefined.`);
+  }
 }
 
 export const {HOST_NAME, CRT_LOCATION, KEY_LOCATION, OPEN_API, PASSKEY} =
-    process.env;
+  process.env;

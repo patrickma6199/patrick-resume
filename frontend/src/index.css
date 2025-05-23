@@ -5,39 +5,39 @@
 @import 'tailwindcss/utilities';
 
 :root {
-    --vh: 100vh;
+  --vh: 100vh;
 }
 
 html,
 body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  /* Firefox */
 }
 
-::-webkit-scrollbar{
-    display: none;
-    width: 0px;
-    height: 0px;
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
 }
 
 html.lenis,
 html.lenis body {
-    height: auto;
+  height: auto;
 }
 
 .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
+  scroll-behavior: auto !important;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
+  overscroll-behavior: contain;
 }
 
 .lenis.lenis-stopped {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .lenis.lenis-smooth iframe {
-    pointer-events: none;
+  pointer-events: none;
 }
