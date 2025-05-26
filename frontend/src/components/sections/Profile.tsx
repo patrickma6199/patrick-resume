@@ -52,13 +52,12 @@ const Profile: React.FC = () => {
           speed={30}
         />
         <p className="text-md md:text-lg px-4 py-2 max-w-[100vw] md:max-w-[40vw]">
-          Comp. Sci. & Data Science Student and Teaching Assistant at The
-          University of British Columbia | Software Development, Machine
-          Learning and Development Operations
+          Web Development, Machine Learning and Development Operations
         </p>
         <p className="text-xs md:text-sm px-4 py-2 max-w-[100vw] md:max-w-[40vw]">
-          4rd Year Undergraduate Student (BSc.) and Teaching Assistant <br />{' '}
-          Majoring in Computer Science and Minoring in Data Science at <br />{' '}
+          Recent Graduate (B.Sc.) of The University of British Columbia
+          <br /> Majored in Computer Science and Minored in Data Science at{' '}
+          <br />{' '}
           <b className="text-md">
             THE UNIVERSITY OF BRITISH COLUMBIA - 4.33/4.33 GPA
           </b>
@@ -174,7 +173,7 @@ const Profile: React.FC = () => {
   ) : (
     <div className="min-w-[100%] flex flex-row justify-between items-center p-4 relative z-10">
       <motion.div
-        className="p-2 flex flex-col gap-4 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple rounded-3xl shadow-lg"
+        className="p-2 flex flex-col gap-3 bg-gradient-to-tr from-darker-blue via-light-blue to-light-purple rounded-3xl shadow-lg"
         style={{y: yTranslation}}
       >
         <TypeAnimation
@@ -191,17 +190,16 @@ const Profile: React.FC = () => {
           ]}
           wrapper="div"
           repeat={Infinity}
-          className="text-2xl font-bold py-2 px-4 my-8"
+          className="text-2xl font-bold pt-2 px-4 my-6"
           speed={30}
         />
-        <p className="text-lg px-4 py-2 max-w-[40vw]">
-          Comp. Sci. & Data Science Student and Teaching Assistant at The
-          University of British Columbia | Software Development, Machine
-          Learning and Development Operations
+        <p className="text-lg px-4 pb-2 max-w-[40vw]">
+          Web Development, Machine Learning and Development Operations
         </p>
         <p className="text-sm px-4 py-2 max-w-[40vw]">
-          4rd Year Undergraduate Student (BSc.) and Teaching Assistant <br />{' '}
-          Majoring in Computer Science and Minoring in Data Science at <br />{' '}
+          Recent Graduate (B.Sc.) of The University of British Columbia
+          <br /> Majored in Computer Science and Minored in Data Science at{' '}
+          <br />{' '}
           <b className="text-md">
             THE UNIVERSITY OF BRITISH COLUMBIA - 4.33/4.33 GPA
           </b>
