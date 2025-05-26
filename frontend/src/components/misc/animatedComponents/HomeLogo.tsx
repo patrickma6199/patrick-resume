@@ -1,28 +1,35 @@
 import React from 'react';
-import {motion} from 'framer-motion';
+import {motion, useInView} from 'framer-motion';
 
 const HomeLogo: React.FC = () => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, {once: true, amount: 0.3});
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches;
+
   const svgVariants = {
     hidden: {
       pathLength: 0,
     },
     visible: {
       pathLength: 1,
-      transition: {
-        duration: 5,
-        ease: 'easeInOut',
-      },
     },
   };
 
   return (
     <motion.svg
+      ref={ref}
       width="1200px"
       height="400px"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-126.22499999999997 -10 752.4499999999999 170"
       preserveAspectRatio="xMidYMid"
       className="z-50 pointer-events-none"
+      style={{
+        willChange: 'transform',
+        transform: 'translateZ(0)',
+      }}
     >
       <defs>
         <linearGradient
@@ -64,10 +71,11 @@ const HomeLogo: React.FC = () => {
             strokeWidth={1}
             variants={svgVariants}
             initial="hidden"
-            animate="visible"
+            animate={isInView && !prefersReducedMotion ? 'visible' : 'hidden'}
             transition={{
-              duration: 5,
+              duration: prefersReducedMotion ? 0 : 5,
               ease: 'easeInOut',
+              delay: 0.2,
             }}
           ></motion.path>
         </g>
