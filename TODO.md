@@ -2,5 +2,6 @@
 - [ ] Fix dev environment dependent on backend calls
 - [ ] Update project descriptions
 - [ ] Hook up git hooks in upstream server
-- [ ] Fix responsive UI for added resume button
+- [x] Fix responsive UI for added resume button
 - [ ] Reduce hardware usage on animations
+- [ ] Set up auto-registration of prod SSL certificates
