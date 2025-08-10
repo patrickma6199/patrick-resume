@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prepare": "husky",
-    "dev": "concurrently -n \"frontend,backend\" \"cd frontend && npm run dev\" \"docker-compose up -d\""
+    "dev": "concurrently -n \"frontend,backend\" \"cd frontend && npm run dev\" \"docker-compose up -d portfolio-backend\""
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

@@ -1,5 +1,5 @@
 import {motion} from 'framer-motion';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import AtlasAvatar from '../assets/atlas.webp';
 import {API} from '../API';
 import SpeechBox from './misc/speechComponents/SpeechBox';
