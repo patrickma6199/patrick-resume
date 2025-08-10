@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {TypeAnimation} from 'react-type-animation';
 import ContactIcon from '../misc/ContactIcon';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -63,7 +63,7 @@ const Profile: React.FC = () => {
           </b>
         </p>
         <motion.div
-          className="flex flex-row justify-center gap-4 items-center w-full"
+          className="flex flex-row justify-center gap-1 items-center w-full md:gap-4"
           variants={{
             hidden: {opacity: 0},
             visible: {
