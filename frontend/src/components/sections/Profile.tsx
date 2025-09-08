@@ -51,15 +51,16 @@ const Profile: React.FC = () => {
           className="text-xl font-bold py-2 px-4 my-8 -mb-3"
           speed={30}
         />
-        <p className="text-md md:text-lg px-4 py-2 max-w-[100vw] md:max-w-[40vw]">
-          Web Development, Machine Learning and Development Operations
+        <p className="text-md px-4 py-2 max-w-[100vw]">
+          Software Developer of the Faculty of Medicine at UBC
         </p>
-        <p className="text-xs md:text-sm px-4 py-2 max-w-[100vw] md:max-w-[40vw]">
-          Recent Graduate (B.Sc.) of The University of British Columbia
-          <br /> Majored in Computer Science and Minored in Data Science at{' '}
+        <p className="text-xs px-4 py-2 max-w-[100vw]">
+          Web Development, Machine Learning and Development Operations
+          <br />
+          B.Sc. Majoring in Computer Science and Minored in Data Science at{' '}
           <br />{' '}
           <b className="text-md">
-            THE UNIVERSITY OF BRITISH COLUMBIA - 4.33/4.33 GPA
+            THE UNIVERSITY OF BRITISH COLUMBIA OKANAGAN - 4.33/4.33 GPA
           </b>
         </p>
         <motion.div
@@ -194,14 +195,15 @@ const Profile: React.FC = () => {
           speed={30}
         />
         <p className="text-lg px-4 pb-2 max-w-[40vw]">
-          Web Development, Machine Learning and Development Operations
+          Software Developer of the Faculty of Medicine at UBC
         </p>
         <p className="text-sm px-4 py-2 max-w-[40vw]">
-          Recent Graduate (B.Sc.) of The University of British Columbia
-          <br /> Majored in Computer Science and Minored in Data Science at{' '}
+          Web Development, Machine Learning and Development Operations
+          <br />
+          B.Sc. Majoring in Computer Science and Minored in Data Science at{' '}
           <br />{' '}
           <b className="text-md">
-            THE UNIVERSITY OF BRITISH COLUMBIA - 4.33/4.33 GPA
+            THE UNIVERSITY OF BRITISH COLUMBIA OKANAGAN - 4.33/4.33 GPA
           </b>
         </p>
         <motion.div
