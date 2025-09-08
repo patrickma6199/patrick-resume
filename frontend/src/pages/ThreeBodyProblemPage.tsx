@@ -1,12 +1,11 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef} from 'react';
 import CodeIcon from '@mui/icons-material/Code';
-import NavMenu, {Page} from '../components/misc/NavMenu';
+import NavMenu from '../components/misc/NavMenu';
+import {Page} from '../types';
 import {Canvas, useLoader} from '@react-three/fiber';
 import {
   AdaptiveDpr,
-  CameraControls,
   PerspectiveCamera,
-  Line,
   OrbitControls,
   useTexture,
   useHelper,
@@ -15,7 +14,6 @@ import {
 import {
   TextureLoader,
   Texture,
-  Mesh,
   BackSide,
   Vector3,
   RepeatWrapping,

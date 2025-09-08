@@ -1,5 +1,6 @@
 import React from 'react';
-import NavMenu, {Page} from '../components/misc/NavMenu';
+import NavMenu from '../components/misc/NavMenu';
+import {Page} from '../types';
 import CodeIcon from '@mui/icons-material/Code';
 import AssistantMainContent from '../components/AssistantMainContent';
 import {ScrollProvider} from '../contexts/ScrollContext';

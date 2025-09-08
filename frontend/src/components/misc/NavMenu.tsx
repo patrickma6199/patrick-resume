@@ -1,6 +1,7 @@
 import {Button, Drawer} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, {useEffect, useState} from 'react';
+import {Page} from '../../types';
 
 // , 'Awards', 'Work'
 const menuItems = ['Profile', 'Projects'];
@@ -17,13 +18,6 @@ const scroll = () => {
     });
   }
 };
-
-export enum Page {
-  HOME = 'home',
-  SPACE = 'space',
-  THREE_BODY = 'three_body',
-  ASSISTANT = 'assistant',
-}
 
 type NavMenuProps = {
   page: Page;

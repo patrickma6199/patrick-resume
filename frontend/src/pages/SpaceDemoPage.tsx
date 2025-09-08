@@ -1,10 +1,10 @@
-import React, {Fragment, useEffect, useRef, useState} from 'react';
+import React, {Fragment, useEffect, useRef} from 'react';
 import CodeIcon from '@mui/icons-material/Code';
-import NavMenu, {Page} from '../components/misc/NavMenu';
+import NavMenu from '../components/misc/NavMenu';
+import {Page} from '../types';
 import {Canvas, useFrame, useLoader} from '@react-three/fiber';
 import {
   AdaptiveDpr,
-  CameraControls,
   PerspectiveCamera,
   Line,
   OrbitControls,
@@ -12,13 +12,7 @@ import {
 } from '@react-three/drei';
 import {TextureLoader, Texture, Mesh, BackSide, Vector3} from 'three';
 import Stats from 'stats.js';
-import {
-  Bloom,
-  DepthOfField,
-  EffectComposer,
-  Noise,
-  Vignette,
-} from '@react-three/postprocessing';
+import {Bloom, EffectComposer, Vignette} from '@react-three/postprocessing';
 import {useControls} from 'leva';
 
 // General ObjectProps
