@@ -8,3 +8,4 @@
 - [ ] Set up auto-registration of prod SSL certificates
 - [x] Update Job Title
 - [ ] Add Work field
+- [x] Status 403 for any requests to dot files from proxy-level
