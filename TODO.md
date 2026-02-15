@@ -9,3 +9,4 @@
 - [x] Update Job Title
 - [ ] Add Work field
 - [x] Status 403 for any requests to dot files from proxy-level
+- [ ] React Three Fiber book for photography
